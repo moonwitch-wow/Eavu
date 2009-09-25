@@ -1,0 +1,11 @@
+## Interface: 30200
+## Author: MoonWitch
+## Title: Eavu
+## Description: General tweaks
+
+libs\libs.xml
+
+Eavu.lua
+broker.lua
+tweaks.lua
+autorepair.lua
