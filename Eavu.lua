@@ -17,7 +17,7 @@ function Eavu:Register(event, method)
 end
 
 function Eavu:Print(...)
-	print('|cffff8080So Eavu:|r', ...)
+	print('|cffff8080 Eavu:|r', ...)
 end
 
 Eavu:SetScript('OnEvent', function(self, event, ...) self[event](self, event, ...) end)

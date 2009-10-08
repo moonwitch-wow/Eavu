@@ -2,6 +2,7 @@
 ## Author: MoonWitch
 ## Title: Eavu
 ## Description: General tweaks
+## Credits: P3lim for Inomena
 
 libs\libs.xml
 
