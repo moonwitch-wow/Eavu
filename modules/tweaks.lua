@@ -21,6 +21,11 @@ Eavu:Register('READY_CHECK', function()
 	PlaySoundFile([=[Sound\Interface\ReadyCheck.wav]=])
 end)
 
+--[[ Force LFG invite warning ]]
+Eavu:Register('LFG_PROPOSAL_SHOW', function()
+	PlaySoundFile([=[Sound\Interface\ReadyCheck.wav]=])
+end)
+
 --[[ GM chat frame enhancement ]]
 Eavu:Register('ADDON_LOADED', function(self, event, name)
 	if(name ~= 'Blizzard_GMChatUI') then return end
@@ -35,3 +40,5 @@ end)
 --[[ GM ticket shortcut ]]
 SLASH_TICKETGM1 = '/gm'
 SlashCmdList.TICKETGM = ToggleHelpFrame
+
+
