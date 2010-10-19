@@ -118,7 +118,7 @@ eb:SetAltArrowKeyMode(false)
 local a, b, c = select(6, eb:GetRegions())
 a:Hide(); b:Hide(); c:Hide()
 
--- NeonChat
+--[[ NeonChat
 for i=6,8 do select(i, ChatFrameEditBox:GetRegions()):Hide() end
 
 local editbox = CreateFrame("Button", nil, ChatFrameEditBox)
@@ -151,7 +151,7 @@ hooksecurefunc("ChatEdit_UpdateHeader", function()
 	else colorize(ChatTypeInfo[type].r,ChatTypeInfo[type].g,ChatTypeInfo[type].b)
 	end
 end)
-
+--]]
 -- Modified version of MouseIsOver from UIParent.lua
 local MouseIsOver = function(frame)
 	local s = frame:GetParent():GetEffectiveScale()

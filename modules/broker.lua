@@ -1,63 +1,44 @@
--- Left Info Panel contains picoGuild, picoFriends and tekDurability
+-- left side
 local guild = LibStub('LibCargoShip-2.1'):CreateBlock('picoGuild', {
-	fontSize=10,
-	width=20,
 	})
-guild:SetPoint("LEFT", LeftPanel, "LEFT", 25, 0)
+guild:SetPoint("LEFT", BottomPanel, "LEFT", 10, 0)
 
 local friends = LibStub('LibCargoShip-2.1'):CreateBlock('picoFriends', {
-	fontSize=10,
-	width=20,
 	})
-friends:SetPoint("CENTER", LeftPanel, "CENTER", 0, 0)
+friends:SetPoint("LEFT", guild, "RIGHT", 40, 0)
 
 local dura= LibStub("LibCargoShip-2.1"):CreateBlock("tekability", {
-	fontSize=10,
-	width=20,
 	})
-dura:SetPoint("RIGHT", LeftPanel, "RIGHT", -25, 0)
+dura:SetPoint("LEFT", friends, "RIGHT", 40, 0)
 
--- Right Info Panel contains FPS/PING/Mem, free bags and gold
-local money = LibStub("LibCargoShip-2.1"):CreateBlock("Eavu_Money", {
-	fontSize=10,
-	width=20,
+local tg = LibStub("LibCargoShip-2.1"):CreateBlock("TourGuide", {
+	width = 100,
 	})
-money:SetPoint("RIGHT", RightPanel, "RIGHT", -25, 0)
+tg:SetPoint("LEFT", dura, "RIGHT", 40, 0)
+
+-- right side
+local money = LibStub("LibCargoShip-2.1"):CreateBlock("Eavu_Money", {
+	})
+money:SetPoint("RIGHT", BottomPanel, "RIGHT", -10, 0)
 
 local fps = LibStub("LibCargoShip-2.1"):CreateBlock("Eavu_Perf", {
-	fontSize=10,
-	width=20,
+	width = 100,
 	})
-fps:SetPoint("LEFT", RightPanel, "LEFT", 20, 0)
+fps:SetPoint("RIGHT", money, "LEFT", -40, 0)
 
-if select(2, UnitClass("player")) ~= "SHAMAN" then 
-	local bags = LibStub("LibCargoShip-2.1"):CreateBlock("Eavu_Bags", {
-		fontSize=10,
-		width=20,
-		})
-	bags:SetPoint("CENTER", RightPanel, "CENTER", 0, 0)
-else
-	local bags = LibStub("LibCargoShip-2.1"):CreateBlock("Eavu_Bags", {
-		fontSize=10,
-		width=20,
+local bags = LibStub("LibCargoShip-2.1"):CreateBlock("Eavu_Bags", {
 	})
-	bags:SetPoint("CENTER", RightPanel, "CENTER", 45, 0)
-	
+bags:SetPoint("RIGHT", fps, "LEFT", -40, 0)
+
+if select(2, UnitClass("player")) == "SHAMAN" then 
 	local ankh = LibStub("LibCargoShip-2.1"):CreateBlock("AnkhUp", {
-		fontSize=10,
-		width = 20,
 		})
-	ankh:SetPoint("RIGHT", bags, "LEFT", -20, 0)
+	ankh:SetPoint("RIGHT", bags, "LEFT", -40, 0)
 end
 
--- Center panel goodness - requires reload IN instance to work :(
---local inInstance,_ = IsInInstance()
---if inInstance then
+-- centered
 local dps = LibStub('LibCargoShip-2.1'):CreateBlock('picoDPS', {fontSize=10})
-	dps:SetPoint("LEFT", CenterPanel, "LEFT", 10, 0)
+dps:SetPoint("RIGHT", BottomPanel, "CENTER", -250, 0)
 
-	local group = LibStub("LibCargoShip-2.1"):CreateBlock("picoGroup", {fontSize = 10})
-	group:SetPoint("RIGHT", CenterPanel, "RIGHT", -10, 0)
---else
---	return
---end
+local group = LibStub("LibCargoShip-2.1"):CreateBlock("picoGroup", {fontSize = 10})
+group:SetPoint("LEFT", BottomPanel, "CENTER", 250, 0)

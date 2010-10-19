@@ -2,9 +2,7 @@
 EavuDB = { }
 
 EavuDB["general"] = {
-	["uiscale"] = 0.64, -- set your value (between 0.64 and 1) of your uiscale if autoscale is off
-	["overridelowtohigh"] = false, -- EXPERIMENTAL ONLY! override lower version to higher version on a lower reso.
-	["multisampleprotect"] = true, -- i don't recommend this because of shitty border but, voila!
+	["uiscale"] = 0.85, -- set your value (between 0.64 and 1) of your uiscale if autoscale is off
 }
 
 EavuDB["media"] = {
@@ -28,6 +26,6 @@ EavuDB["datatext"] = { -- is location of .. 4/5 should be on the same spot :P
 }
 
 EavuDB["panels"] = { 
-	["width"] = 450,
+	["width"] = 400,
 	["height"] = 30,
 }

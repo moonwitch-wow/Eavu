@@ -4,7 +4,7 @@ Eavu:SetScript("OnEvent", function(self, event, ...) self[event](self, ...) end)
 local barTexture = [=[Interface\TargetingFrame\UI-StatusBar]=]
 local overlayTexture = [=[Interface\Tooltips\Nameplate-Border]=]
 local glowTexture = [=[Interface\Tooltips\Nameplate-Glow]=]
-local font, fontSize, fontOutline = [=[Fonts\ARIALN.ttf]=], 10, "OUTLINE"
+local font, fontSize, fontOutline = [=[Fonts\ARIALN.ttf]=], 9, "OUTLINE"
 local backdrop = {
 	edgeFile = glowTexture, edgeSize = 5,
 	insets = {left = 3, right = 3, top = 3, bottom = 3}
