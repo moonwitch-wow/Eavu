@@ -1,10 +1,6 @@
 -- Cuz shit breaks when I forget this:
 EavuDB = { }
 
-EavuDB["general"] = {
-	["uiscale"] = 0.85, -- set your value (between 0.64 and 1) of your uiscale if autoscale is off
-}
-
 EavuDB["media"] = {
 	["font"] = [[Fonts\FRIZQT__.ttf]], -- general font of Eavu
 	["blank"] = [[Interface\AddOns\Eavu\media\blank]], -- the main texture for all borders/panels
