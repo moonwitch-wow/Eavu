@@ -1,32 +1,38 @@
-------------------------------------------------------------------------
---[[ move some frames
-------------------------------------------------------------------------
-local wf = WatchFrame
-local wfmove = false
-
-wf:SetMovable(true)
-wf:SetClampedToScreen(false) 
-wf:ClearAllPoints()
-wf:SetPoint("TOPRIGHT", Minimap, "BOTTOMRIGHT", EavuDB:Scale(17), EavuDB:Scale(-80))
-wf:SetWidth(EavuDB:Scale(250))
-wf:SetHeight(EavuDB:Scale(600))
-wf:SetUserPlaced(true)
-wf.SetPoint = function() end
-wf.ClearAllPoints = function() end
-
-local function WATCHFRAMELOCK()
-	if wfmove == false then
-		wfmove = true
-		wf:EnableMouse(true);
-		wf:RegisterForDrag("LeftButton"); 
-		wf:SetScript("OnDragStart", wf.StartMoving); 
-		wf:SetScript("OnDragStop", wf.StopMovingOrSizing);
-	elseif wfmove == true then
-		wf:EnableMouse(false);
-		wfmove = false
-	end
+--[[
+-----------------------------
+-- INIT
+-----------------------------
+local _G = _G
+-----------------------------
+-- FUNCTIONS
+-----------------------------
+local function init()
+	local wf = _G['WatchFrame']
+	local wfh = _G['WatchFrameHeader']
+	local wfl = _G['WatchFrameLines']
+    
+	wf:SetUserPlaced(true)
+		
+	wfh:EnableMouse(true)
+	wfh:RegisterForDrag("LeftButton")
+	wfh:SetHitRectInsets(-15, -15, -5, -5)
+	wfh:SetScript("OnDragStart", function(s) 
+	local f = s:GetParent()
+		f:StartMoving()
+		end)
+	wfh:SetScript("OnDragStop", function(s) 
+		local f = s:GetParent()
+		f:StopMovingOrSizing()
+		end)
 end
 
-SLASH_WATCHFRAMELOCK1 = "/wf"
-SlashCmdList["WATCHFRAMELOCK"] = WATCHFRAMELOCK
---]]
+local a = CreateFrame("Frame")
+
+a:SetScript("OnEvent", function(self, event)
+if(event=="PLAYER_LOGIN") then
+init()
+end
+end)
+  
+  a:RegisterEvent("PLAYER_LOGIN")
+  --]]
