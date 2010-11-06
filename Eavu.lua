@@ -73,8 +73,8 @@ local function CreateLayout()  -- Cvars and Chatsettings :P
 	SetCVar('CombatDamage', 1)
 	SetCVar('CombatHealing', 0)
 	SetCVar('showArenaEnemyFrames', 0)
-	SetCVar('cameraDistanceMax', 40)
-	SetCVar('cameraDistanceMaxFactor', 4)
+	--SetCVar('cameraDistanceMax', 40)
+	--SetCVar('cameraDistanceMaxFactor', 4)
 	SetCVar('cameraWaterCollision', 0)
 	SetCVar('scriptErrors', 1)
 
@@ -92,7 +92,6 @@ local function CreateLayout()  -- Cvars and Chatsettings :P
 	--SetCVar('chatLocked', 0)
 	--SetCVar('showClock', 1)
 	SetCVar('cameraViewBlendStyle', 1)  -- How the camera should move between saved positions (1: smooth, 2: instant).
-	SetCVar('violenceLevel', 5) -- apparently this makes WoW a gorey game?
 	SetCVar('displaySpellActivationOverlays', 1) -- spell alerts 4.0.1
 	SetCVar('BloatThreat', 1)
 	SetCVar('colorChatNamesByClass', 1)
