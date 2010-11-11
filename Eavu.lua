@@ -5,7 +5,7 @@
 local _G = _G
 local Eavu = CreateFrame('Frame', 'Eavu')
 local fontSize = 14
-local uiScale = GetCVar('uiScale')
+local EavuUiScale = GetCVar('uiScale')
 
 function Eavu:GetScreen(hor, ver)
 	local horScreen = string.match(({GetScreenResolutions()})[GetCurrentResolution()], '(%d+)x%d+') 
@@ -26,14 +26,13 @@ end
 
 Eavu.dummy = function() end
 
-local mult = 768/string.match(GetCVar('gxResolution'), '%d+x(%d+)')/uiScale
+local mult = 768/string.match(GetCVar('gxResolution'), '%d+x(%d+)')/EavuUiScale
 
 local function scale(x)
     return mult*math.floor(x/mult+.5)
 end
 
 function Eavu:Scale(x) return scale(x) end
-Eavu.mult = mult
 
 function Eavu:CreatePanel(f, w, h, anchor1, parent, anchor2, x, y)
 	sh = scale(h)
@@ -102,11 +101,17 @@ function Eavu:Print(...)
 	print('|cffff8080 Eavu:|r', ...)
 end
 
-Eavu:Print(Eavu:GetScreen())
-
 SlashCmdList['RELOAD_UI'] = function() ReloadUI() end
 SLASH_RELOAD_UI1 = '/rl'
 
+Eavu.PLAYER_ENTERING_WORLD = function()
+	HidePartyFrame()
+	CreateLayout()
+end
+Eavu:SetScript('OnEvent', function(self, event, ...) self[event](self, event, ...) end)
+Eavu:RegisterEvent'PLAYER_ENTERING_WORLD'
+
+--[[
 Eavu.PLAYER_LOGIN = function()
 	HidePartyFrame()
 	CreateLayout()
@@ -114,3 +119,4 @@ end
 
 Eavu:SetScript('OnEvent', function(self, event, ...) self[event](self, event, ...) end)
 Eavu:RegisterEvent'PLAYER_LOGIN'
+--]]
