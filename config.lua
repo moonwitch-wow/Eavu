@@ -22,6 +22,6 @@ EavuDB["datatext"] = { -- is location of .. 4/5 should be on the same spot :P
 }
 
 EavuDB["panels"] = { 
-	["width"] = 400,
+	["width"] = 401,
 	["height"] = 30,
 }

@@ -26,6 +26,14 @@ Eavu:Register('LFG_PROPOSAL_SHOW', function()
 	PlaySoundFile([=[Sound\Interface\ReadyCheck.wav]=])
 end)
 
+Eavu:Register('PLAYER_REGEN_ENABLED', function()
+UIErrorsFrame:AddMessage('-- Combat', 1, 1, 1)
+end)
+
+Eavu:Register('PLAYER_REGEN_DISABLED', function()
+UIErrorsFrame:AddMessage('++ Combat', 1, 1, 1)
+end)
+
 --[[ GM chat frame enhancement ]]
 Eavu:Register('ADDON_LOADED', function(self, event, name)
 	if(name ~= 'Blizzard_GMChatUI') then return end

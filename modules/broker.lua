@@ -42,3 +42,6 @@ dps:SetPoint("RIGHT", BottomPanel, "CENTER", -250, 0)
 
 local group = LibStub("LibCargoShip-2.1"):CreateBlock("picoGroup", {fontSize = 10})
 group:SetPoint("LEFT", BottomPanel, "CENTER", 250, 0)
+
+local cbt = LibStub('LibCargoShip-2.1'):CreateBlock('CombatLogToggle', {fontSize=10})
+cbt:SetPoint("CENTER", BottomPanel, "CENTER")

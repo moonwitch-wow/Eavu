@@ -14,6 +14,7 @@ Eavu.lua
 modules\broker_bags.lua
 modules\broker_money.lua
 modules\broker_perf.lua
+modules\combatlog.lua
 
 modules\panels.lua
 modules\autorepair.lua
@@ -21,5 +22,4 @@ modules\broker.lua
 modules\color_friends.lua
 modules\nameplates.lua
 modules\quest_stuff.lua
-modules\quest_watch_frame.lua
 modules\tweaks.lua
