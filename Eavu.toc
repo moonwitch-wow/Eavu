@@ -7,6 +7,7 @@
 
 libs\libs.xml
 
+cvars.lua
 config.lua
 Eavu.lua
 
@@ -15,12 +16,10 @@ modules\broker_bags.lua
 modules\broker_money.lua
 modules\broker_perf.lua
 modules\combatlog.lua
-modules\cvars.lua
-
 modules\panels.lua
 modules\autorepair.lua
 modules\broker.lua
 modules\color_friends.lua
-#modules\nameplates.lua
+modules\nameplates.lua
 modules\quest_stuff.lua
 modules\tweaks.lua

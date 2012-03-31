@@ -1,7 +1,4 @@
-﻿
-
-local questtags, tags = {}, {Elite = "+", Group = "G", Dungeon = "D", Raid = "R", PvP = "P", Daily = "•", Heroic = "H", Repeatable = "∞"}
-
+﻿local questtags, tags = {}, {Elite = "+", Group = "G", Dungeon = "D", Raid = "R", PvP = "P", Daily = "•", Heroic = "H", Repeatable = "∞"}
 
 local function GetTaggedTitle(i)
 	local name, level, tag, group, header, _, complete, daily = GetQuestLogTitle(i)
@@ -10,7 +7,6 @@ local function GetTaggedTitle(i)
 	if not group or group == 0 then group = nil end
 	return string.format("[%s%s%s%s] %s", level, tag and tags[tag] or "", daily and tags.Daily or "",group or "", name), tag, daily, complete
 end
-
 
 -- Add tags to the quest log
 local function QuestLog_Update()
@@ -24,7 +20,6 @@ local function QuestLog_Update()
 end
 hooksecurefunc("QuestLog_Update", QuestLog_Update)
 hooksecurefunc(QuestLogScrollFrame, "update", QuestLog_Update)
-
 
 -- Add tags to the quest watcher
 hooksecurefunc("WatchFrame_Update", function()
@@ -44,7 +39,6 @@ hooksecurefunc("WatchFrame_Update", function()
 	end
 end)
 
-
 -- Add tags to quest links in chat
 local function filter(self, event, msg, ...)
 	if msg then
@@ -52,7 +46,6 @@ local function filter(self, event, msg, ...)
 	end
 end
 for _,event in pairs{"SAY", "GUILD", "GUILD_OFFICER", "WHISPER", "WHISPER_INFORM", "PARTY", "RAID", "RAID_LEADER", "BATTLEGROUND", "BATTLEGROUND_LEADER"} do ChatFrame_AddMessageEventFilter("CHAT_MSG_"..event, filter) end
-
 
 -- Add tags to gossip frame
 local i

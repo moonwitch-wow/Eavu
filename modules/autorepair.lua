@@ -1,5 +1,6 @@
--- Taken from P3lim's Inomena
-Eavu:Register('MERCHANT_SHOW', function(self)
+local _, Eavu = ...
+
+function Eavu.MERCHANT_SHOW()
 	local val, afford = GetRepairAllCost()
 	if(CanMerchantRepair() and afford) then
 		if(val > 1e4) then
@@ -12,4 +13,6 @@ Eavu:Register('MERCHANT_SHOW', function(self)
 	
 		RepairAllItems(CanGuildBankRepair() and GetGuildBankWithdrawMoney() >= GetRepairAllCost())
 	end
-end)
+
+	self:UnregisterEvent("MERCHANT_SHOW")
+end

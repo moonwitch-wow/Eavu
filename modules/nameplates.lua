@@ -1,4 +1,5 @@
--- blah blah
+local _, Eavu = ...
+
 local mediaFolder = 'Interface\\AddOns\\Eavu\\media\\'
 
 local FONT = [=[Fonts\ARIALN.TTF]=]
@@ -11,9 +12,9 @@ local iconSize = 20 --Size of all Icons, RaidIcon/ClassIcon/Castbar Icon
 local FontShadowOffset = 0 -- 0 = no shadow
 
 local hpHeight = 10
-local hpWidth = 100
+local hpWidth = 115
 local cbHeight = 5
-local cbWidth = 100
+local cbWidth = 115
 local cbIconSize = 20
 
 local adWidth = 10				-- additional width for selected nameplate (hpWidth + adWidth)
@@ -94,18 +95,16 @@ local name = frame.oldname:GetText()
     local minHealth, maxHealth = frame.healthOriginal:GetMinMaxValues()
     local valueHealth = frame.healthOriginal:GetValue()
 	local d =(valueHealth/maxHealth)*100
-
-	frame.hp.value:SetText(CoolNumber(valueHealth))
-
-		if(d <= 35 and d >= 25) then
-			frame.hp.value:SetTextColor(253/255, 238/255, 80/255)
-		elseif(d < 25 and d >= 20) then
-			frame.hp.value:SetTextColor(250/255, 130/255, 0/255)
-		elseif(d < 20) then
-			frame.hp.value:SetTextColor(200/255, 20/255, 40/255)
-		else
+	
+		if(d < 100) and valueHealth > 1 then
+			frame.hp.value:SetText(CoolNumber(valueHealth))
+			frame.hp.pct:SetText(format("%.1f %s",d,"%"))
 			frame.hp.value:SetTextColor(1,1,1)
-		end	
+			frame.hp.pct:SetTextColor(1,1,1)
+		else
+			frame.hp.value:SetText("")
+			frame.hp.pct:SetText("")
+		end
 	
 	-- highlight selected plate
 	if(UnitName('target') and frame:GetAlpha() == 1) then
@@ -191,8 +190,12 @@ local function SkinObjects(frame)
 	
 	hp.value = hp:CreateFontString(nil, "OVERLAY")	
 	hp.value:SetFont(FONT, FONTSIZE, FONTFLAG)
-	hp.value:SetPoint("RIGHT", hp, "TOPRIGHT", 10, 5)
+	hp.value:SetPoint("LEFT", hp, "RIGHT", 5, 0)
 	hp.value:SetShadowOffset(FontShadowOffset, -FontShadowOffset)
+
+	hp.pct = hp:CreateFontString(nil, "OVERLAY")	
+	hp.pct:SetFont(FONT, FONTSIZE, FONTFLAG)
+	hp.pct:SetPoint("CENTER", hp, "CENTER", 0, 0)
 	
 	-- selection highlight
 	local select = frame:CreateTexture(nil, 'OVERLAY')
@@ -235,7 +238,7 @@ local function SkinObjects(frame)
 	-- name
 	local name = hp:CreateFontString(nil, 'OVERLAY')
 	name:SetFont(FONT, FONTSIZE, FONTFLAG)
-	name:SetPoint("LEFT", hp, "TOPLEFT", -10, 5)
+	name:SetPoint("BOTTOMLEFT", hp, "TOPLEFT", 0, 1)
 	frame.oldname = oldname
 	frame.name = name
 	name:SetShadowOffset(FontShadowOffset, -FontShadowOffset)

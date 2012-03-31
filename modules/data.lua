@@ -1,7 +1,7 @@
 --[[
 
 Stats = CreateFrame("Frame")
-Stats.TTSpacing = Eavu:Scale(1)
+Stats.TTSpacing = Eavu.Scale(1)
 local statColor = { }
 local db = EavuDB["datatext"]
 
@@ -117,7 +117,7 @@ if not db.mem == nil or db.mem > 0 then
 		self:SetAllPoints(Text)
 		self:SetScript("OnEnter", function()
 			if not InCombatLockdown() then
-				GameTooltip:SetOwner(this, "ANCHOR_TOP", 0, Eavu:Scale(6));
+				GameTooltip:SetOwner(this, "ANCHOR_TOP", 0, Eavu.Scale(6));
 				GameTooltip:ClearAllPoints()
 				GameTooltip:SetPoint("BOTTOM", self, "TOP", 0, Stats.TTSpacing)
 				GameTooltip:ClearLines()
@@ -202,7 +202,7 @@ if not db.guild == nil or db.guild > 0 then
 				local online, total, gmotd = 0, GetNumGuildMembers(true), GetGuildRosterMOTD()
 				for i = 0, total do if select(9, GetGuildRosterInfo(i)) then online = online + 1 end end
 				
-				GameTooltip:SetOwner(this, "ANCHOR_TOP", 0, Eavu:Scale(6));
+				GameTooltip:SetOwner(this, "ANCHOR_TOP", 0, Eavu.Scale(6));
 				GameTooltip:ClearAllPoints()
 				GameTooltip:SetPoint("BOTTOM", self, "TOP", 0, Stats.TTSpacing)
 				GameTooltip:ClearLines()
@@ -274,7 +274,7 @@ if not db.friends == nil or db.friends > 0 then
 			local name, level, class, zone, connected, status, note, classc, levelc, zone_r, zone_g, zone_b, grouped
 			for i = 0, total do if select(5, GetFriendInfo(i)) then online = online + 1 end end
 			if online > 0 then
-				GameTooltip:SetOwner(this, "ANCHOR_TOP", 0, Eavu:Scale(6));
+				GameTooltip:SetOwner(this, "ANCHOR_TOP", 0, Eavu.Scale(6));
 				GameTooltip:ClearAllPoints()
 				GameTooltip:SetPoint("BOTTOM", self, "TOP", 0, Stats.TTSpacing)
 				GameTooltip:ClearLines()
@@ -339,7 +339,7 @@ if not db.dur == nil or db.dur > 0 then
 		self:SetAllPoints(Text)
 		self:SetScript("OnEnter", function()
 			if not InCombatLockdown() then
-				GameTooltip:SetOwner(this, "ANCHOR_TOP", 0, Eavu:Scale(6));
+				GameTooltip:SetOwner(this, "ANCHOR_TOP", 0, Eavu.Scale(6));
 				GameTooltip:ClearAllPoints()
 				GameTooltip:SetPoint("BOTTOM", self, "TOP", 0, Stats.TTSpacing)
 				GameTooltip:ClearLines()
@@ -428,7 +428,7 @@ if not db.gold == nil or db.gold > 0 then
 		self:SetScript("OnEnter", function()
 			if not InCombatLockdown() then
 				self.hovered = true 
-				GameTooltip:SetOwner(this, "ANCHOR_TOP", 0, Eavu:Scale(6));
+				GameTooltip:SetOwner(this, "ANCHOR_TOP", 0, Eavu.Scale(6));
 				GameTooltip:ClearAllPoints()
 				GameTooltip:SetPoint("BOTTOM", self, "TOP", 0, Stats.TTSpacing)
 				GameTooltip:ClearLines()
@@ -587,7 +587,7 @@ if not db.wowtime == nil or db.wowtime > 0 then
 
 	Stat:SetScript("OnEnter", function(self)
 		OnLoad = function(self) RequestRaidInfo() end,
-		GameTooltip:SetOwner(this, "ANCHOR_TOP", 0, Eavu:Scale(6));
+		GameTooltip:SetOwner(this, "ANCHOR_TOP", 0, Eavu.Scale(6));
 		GameTooltip:ClearAllPoints()
 		GameTooltip:SetPoint("BOTTOM", self, "TOP", 0, Stats.TTSpacing)
 		GameTooltip:ClearLines()
@@ -687,13 +687,13 @@ if not db.dps_text == nil or db.dps_text > 0 then
 	dText = InfoLeft:CreateFontString(nil, "LOW")
 	dText:SetFont(EavuDB["datatext"].font, EavuDB["datatext"].fontsize)
 	dText:SetText("0.0 ","dps")
-	--dText:SetHeight(Eavu:Scale(23))
+	--dText:SetHeight(Eavu.Scale(23))
 
 	panel_setpoint(db.dps_text, dText)
 
 	DPS_FEED:EnableMouse(true)
-	DPS_FEED:SetHeight(Eavu:Scale(20))
-	DPS_FEED:SetWidth(Eavu:Scale(100))
+	DPS_FEED:SetHeight(Eavu.Scale(20))
+	DPS_FEED:SetWidth(Eavu.Scale(100))
 	DPS_FEED:SetAllPoints(dText)
 
 	DPS_FEED:SetScript("OnEvent", function(self, event, ...) self[event](self, ...) end)
@@ -778,13 +778,13 @@ if not db.hps_text == nil or db.hps_text > 0 then
 	hText = InfoLeft:CreateFontString(nil, "LOW")
 	hText:SetFont(EavuDB["datatext"].font, EavuDB["datatext"].fontsize)
 	hText:SetText("0.0 ","hps")
-	--hText:SetHeight(Eavu:Scale(23))
+	--hText:SetHeight(Eavu.Scale(23))
  
 	panel_setpoint(db.hps_text, hText)
  
 	HPS_FEED:EnableMouse(true)
-	HPS_FEED:SetHeight(Eavu:Scale(20))
-	HPS_FEED:SetWidth(Eavu:Scale(100))
+	HPS_FEED:SetHeight(Eavu.Scale(20))
+	HPS_FEED:SetWidth(Eavu.Scale(100))
 	HPS_FEED:SetAllPoints(hText)
  
 	HPS_FEED:SetScript("OnEvent", function(self, event, ...) self[event](self, ...) end)
@@ -1052,7 +1052,7 @@ if not db.avd == nil or db.avd > 0 then
 		self:SetAllPoints(Text)
 		self:SetScript("OnEnter", function()
 			if not InCombatLockdown() then
-				GameTooltip:SetOwner(this, "ANCHOR_TOP", 0, Eavu:Scale(6));
+				GameTooltip:SetOwner(this, "ANCHOR_TOP", 0, Eavu.Scale(6));
 				GameTooltip:ClearAllPoints()
 				GameTooltip:SetPoint("BOTTOM", self, "TOP", 0, Stats.TTSpacing)
 				GameTooltip:ClearLines()
@@ -1104,7 +1104,7 @@ if not db.armor == nil or db.armor > 0 then
 	self:SetAllPoints(Text)
 	self:SetScript("OnEnter", function()
 		if not InCombatLockdown() then
-			GameTooltip:SetOwner(this, "ANCHOR_TOP", 0, Eavu:Scale(6));
+			GameTooltip:SetOwner(this, "ANCHOR_TOP", 0, Eavu.Scale(6));
 			GameTooltip:ClearAllPoints()
 			GameTooltip:SetPoint("BOTTOM", self, "TOP", 0, Stats.TTSpacing)
 			GameTooltip:ClearLines()
