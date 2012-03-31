@@ -1,7 +1,7 @@
 -- blah blah
 local mediaFolder = 'Interface\\AddOns\\Eavu\\media\\'
 
-local FONT = [=[Fonts\FRIZQT__.TTF]=]
+local FONT = [=[Fonts\ARIALN.TTF]=]
 local TEXTURE = [=[Interface\TargetingFrame\UI-StatusBar]=]
 local blankTex = "Interface\\Buttons\\WHITE8x8"	
 local OVERLAY = [=[Interface\TargetingFrame\UI-TargetingFrame-Flash]=]
@@ -15,7 +15,6 @@ local hpWidth = 100
 local cbHeight = 5
 local cbWidth = 100
 local cbIconSize = 20
-local TotemSize = 26
 
 local adWidth = 10				-- additional width for selected nameplate (hpWidth + adWidth)
 local adHeight = 5				-- additional height for selected nameplate (hpHeight + adHeight)
@@ -29,34 +28,6 @@ SetCVar("bloatnameplates",1)
 SetCVar("bloatthreat", 1)
 SetCVar("bloattest", 0)	
 SetCVar("threatWarning", 3)
-
--- totem list
-local totems = {
-	["Earthbind Totem"] = [[Interface\Icons\Spell_nature_strengthofearthtotem02]],
-	["Tremor Totem"] = [[Interface\Icons\Spell_nature_tremortotem]],	
-	["Mana Tide Totem"] = [[Interface\Icons\Spell_frost_summonwaterelemental]],	
-	["Grounding Totem"] = [[Interface\Icons\Spell_nature_groundingtotem]],	
-	["Stoneskin Totem"] = [[Interface\Icons\Spell_nature_stoneskintotem]],
-	["Stoneclaw Totem"] = [[Interface\Icons\Spell_nature_stoneclawtotem]],
-	["Strength of Earth Totem"] = [[Interface\Icons\Spell_nature_earthbindtotem]],
-	["Earth Elemental Totem"] = [[Interface\Icons\Spell_nature_earthelemental_totem]],
-	["Fire Elemental Totem"] = [[Interface\Icons\spell_fire_elemental_totem]],	
-	["Totem of Tranquil Mind"] = [[Interface\Icons\spell_nature_brilliance]],	
-	["Spirit Link Totem"] = [[Interface\Icons\spell_shaman_spiritlink]],	
-	["Searing Totem"] = [[Interface\Icons\Spell_fire_searingtotem]],
-	["Magma Totem"] = [[Interface\Icons\Spell_fire_selfdestruct]],
-	["Frost Resistance Totem"] = [[Interface\Icons\Spell_frostresistancetotem_01]],
-	["Flametongue Totem"] = [[Interface\Icons\Spell_nature_guardianward]],
-	["Totem of Wrath"] = [[Interface\Icons\Spell_fire_totemofwrath]],
-	["Healing Stream Totem"] = [[Interface\Icons\Inv_spear_04]],
-	["Mana Spring Totem"] = [[Interface\Icons\Spell_nature_manaregentotem]],
-	["Cleansing Totem"] = [[Interface\Icons\Spell nature diseasecleansingtotem]],
-	["Fire Resistance Totem"] = [[Interface\Icons\Spell_fireresistancetotem_01]],
-	["Windfury Totem"] = [[Interface\Icons\Spell_nature_windfury]],
-	["Sentry Totem"] = [[Interface\Icons\Spell_nature_removecurse]],
-	["Nature Resistance Totem"] = [[Interface\Icons\Spell nature natureresistancetotem]],
-	["Wrath of Air Totem"] = [[Interface\Icons\Spell_nature_slowingtotem]],
-}
 
 -- format numbers
 function round(num, idp)
@@ -125,11 +96,7 @@ local name = frame.oldname:GetText()
     local valueHealth = frame.healthOriginal:GetValue()
 	local d =(valueHealth/maxHealth)*100
 
-		if(d < 100) and valueHealth > 1 then
-			frame.hp.value:SetText(CoolNumber(valueHealth))
-		else
-			frame.hp.value:SetText("")
-		end
+	frame.hp.value:SetText(CoolNumber(valueHealth))
 
 		if(d <= 35 and d >= 25) then
 			frame.hp.value:SetTextColor(253/255, 238/255, 80/255)
@@ -144,14 +111,10 @@ local name = frame.oldname:GetText()
 	-- highlight selected plate
 	if(UnitName('target') and frame:GetAlpha() == 1) then
 		frame.select:Show()
-		if not totems[name] then
-			frame.hp:SetSize(hpWidth+adWidth, hpHeight+adHeight)
-		end
+		frame.hp:SetSize(hpWidth+adWidth, hpHeight+adHeight)
 	else
 		frame.select:Hide()
-		if not totems[name] then
-			frame.hp:SetSize(hpWidth, hpHeight)
-		end		
+		frame.hp:SetSize(hpWidth, hpHeight)
 	end		
 end
 
@@ -169,34 +132,6 @@ local function UpdateObjects(frame)
 	-- color hp bg dependend on hp color
     local BGr, BGg, BGb = frame.hp:GetStatusBarColor()
 	frame.hp.hpbg2:SetVertexColor(BGr*0.3, BGg*0.3, BGb*0.3)
-	
-	-- totem icon
-	if totems[name] then		
-		if not frame.totem then
-			frame.icon:SetTexCoord(.08, .92, .08, .92)
-			frame.totem = true
-		end
-		if frame.name ~= name then
-			frame.icon:Show()
-			frame.Ticon:Show()
-			frame.icon:SetTexture(totems[name])
-			frame.name:ClearAllPoints()
-			frame.hp:ClearAllPoints()
-			frame.hp:SetSize(TotemSize, hpHeight)	
-			frame.hp:SetPoint('TOP', frame.icon, 'BOTTOM', 0, -2)			
-		end
-	else
-		if frame.totem then
-			frame.icon:Hide()
-			frame.Ticon:Hide()
-			frame.icon:SetTexture()
-			frame.totem = nil
-		end
-		frame.hp:ClearAllPoints()
-		frame.hp:SetSize(hpWidth, hpHeight)	
-		frame.hp:SetPoint('CENTER', frame, 0, 8)		
-		frame.name:SetPoint('BOTTOM', frame.hp, 'TOP', 0, 2)
-	end
 	
 	frame.level:ClearAllPoints()
 	HideObjects(frame)
@@ -235,7 +170,6 @@ end
 local function SkinObjects(frame)
 	local hp, cb = frame:GetChildren()
 	local offset = UIParent:GetScale() / hp:GetEffectiveScale()
-	--local threat, hpborder, cbshield, cbborder, cbicon, overlay, oldname, level, bossicon, raidicon, elite = frame:GetRegions()
 	
 	local threat, hpborder, overlay, oldname, level, bossicon, raidicon, elite = frame:GetRegions()
 	local _, cbborder, cbshield, cbicon = cb:GetRegions()
@@ -258,7 +192,7 @@ local function SkinObjects(frame)
 	
 	hp.value = hp:CreateFontString(nil, "OVERLAY")	
 	hp.value:SetFont(FONT, FONTSIZE, FONTFLAG)
-	hp.value:SetPoint("LEFT", hp, "RIGHT", 5, 0)
+	hp.value:SetPoint("RIGHT", hp, "TOPRIGHT", 10, 2)
 	hp.value:SetShadowOffset(FontShadowOffset, -FontShadowOffset)
 	
 	-- selection highlight
@@ -302,23 +236,10 @@ local function SkinObjects(frame)
 	-- name
 	local name = hp:CreateFontString(nil, 'OVERLAY')
 	name:SetFont(FONT, FONTSIZE, FONTFLAG)
+	name:SetPoint("LEFT", hp, "TOPLEFT", -10, 2)
 	frame.oldname = oldname
 	frame.name = name
 	name:SetShadowOffset(FontShadowOffset, -FontShadowOffset)
-	
-	-- totem icon
-	local icon = frame:CreateTexture(nil, "BACKGROUND")
-	icon:SetPoint("CENTER", frame, 0, 28)
-	icon:SetSize(TotemSize, TotemSize)
-	icon:Hide()
-	frame.icon = icon
-	
-	local Ticon = frame:CreateTexture(nil, 'BACKGROUND')
-	Ticon:SetPoint('BOTTOMRIGHT', icon, offset, -offset)
-	Ticon:SetPoint('TOPLEFT', icon, -offset, offset)
-	Ticon:Hide()
-	Ticon:SetTexture(0, 0, 0)
-	frame.Ticon = Ticon
 	
 	-- raid icon
 	raidicon:ClearAllPoints()

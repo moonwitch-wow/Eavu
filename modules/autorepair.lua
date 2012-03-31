@@ -10,6 +10,6 @@ Eavu:Register('MERCHANT_SHOW', function(self)
 			self:Print(format('Repaired for |cffcc9900%d|r|TInterface\\MoneyFrame\\UI-CopperIcon:18|t', val))
 		end
 	
-		RepairAllItems()
+		RepairAllItems(CanGuildBankRepair() and GetGuildBankWithdrawMoney() >= GetRepairAllCost())
 	end
 end)
