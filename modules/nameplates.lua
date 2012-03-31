@@ -5,7 +5,7 @@ local FONT = [=[Fonts\ARIALN.TTF]=]
 local TEXTURE = [=[Interface\TargetingFrame\UI-StatusBar]=]
 local blankTex = "Interface\\Buttons\\WHITE8x8"	
 local OVERLAY = [=[Interface\TargetingFrame\UI-TargetingFrame-Flash]=]
-local FONTSIZE = 10
+local FONTSIZE = 12
 local FONTFLAG = "THINOUTLINE"
 local iconSize = 20 --Size of all Icons, RaidIcon/ClassIcon/Castbar Icon
 local FontShadowOffset = 0 -- 0 = no shadow
@@ -23,7 +23,6 @@ local numChildren = -1
 local frames = {}
 
 SetCVar("ShowClassColorInNameplate", 1)
-SetCVar("nameplateShowEnemyTotems", 0)
 SetCVar("bloatnameplates",1)	
 SetCVar("bloatthreat", 1)
 SetCVar("bloattest", 0)	
@@ -192,7 +191,7 @@ local function SkinObjects(frame)
 	
 	hp.value = hp:CreateFontString(nil, "OVERLAY")	
 	hp.value:SetFont(FONT, FONTSIZE, FONTFLAG)
-	hp.value:SetPoint("RIGHT", hp, "TOPRIGHT", 10, 2)
+	hp.value:SetPoint("RIGHT", hp, "TOPRIGHT", 10, 5)
 	hp.value:SetShadowOffset(FontShadowOffset, -FontShadowOffset)
 	
 	-- selection highlight
@@ -236,7 +235,7 @@ local function SkinObjects(frame)
 	-- name
 	local name = hp:CreateFontString(nil, 'OVERLAY')
 	name:SetFont(FONT, FONTSIZE, FONTFLAG)
-	name:SetPoint("LEFT", hp, "TOPLEFT", -10, 2)
+	name:SetPoint("LEFT", hp, "TOPLEFT", -10, 5)
 	frame.oldname = oldname
 	frame.name = name
 	name:SetShadowOffset(FontShadowOffset, -FontShadowOffset)
