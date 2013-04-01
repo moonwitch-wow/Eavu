@@ -1,6 +1,7 @@
-## Interface: 40300
+## Interface: 50200
 ## Author: MoonWitch
 ## Title: Eavu
+## Version: 1.2
 ## Description: General tweaks
 ## Credits: P3lim for Inomena and Tuk for TukUI
 ## SavedVariables: EavuSV_DB
@@ -22,4 +23,5 @@ modules\broker.lua
 modules\color_friends.lua
 modules\nameplates.lua
 modules\quest_stuff.lua
+modules\slashcommands.lua
 modules\tweaks.lua
