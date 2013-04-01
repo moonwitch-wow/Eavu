@@ -12,7 +12,7 @@ local res = GetCVar('gxResolution')
 local backdrop = {bgFile = "Interface\\Buttons\\WHITE8x8", edgeFile = "Interface\\Buttons\\WHITE8x8", edgeSize = 1, insets = { left = -1, right = -1, top = -1, bottom = -1}}
 
 function Eavu.GetScreen(hor, ver)
-	local horScreen = string.match(({GetScreenResolutions()})[res], '(%d+)x%d+') 
+	local horScreen = string.match(({GetScreenResolutions()})[res], '(%d+)x%d+')
 	local verScreen = string.match(({GetScreenResolutions()})[res], '%d+x(%d+)')
 	if arg1 == 'hor' then
 		return horScreen
@@ -50,22 +50,10 @@ function Eavu.Print(...)
 	print('|cffff8080 Eavu.|r', ...)
 end
 
--- Slash Commands
-SlashCmdList['RELOAD_UI'] = function() ReloadUI() end
-SLASH_RELOAD_UI1 = '/rl'
-
-SLASH_TICKETGM1 = '/gm'
-SlashCmdList.TICKETGM = ToggleHelpFrame
-
-SLASH_JOURNAL1 = '/ej'
-SlashCmdList.JOURNAL = function()
-	ToggleFrame(EncounterJournal)
-end
-
 function Eavu.ADDON_LOADED(event, addon)
 	self:UnregisterEvent("ADDON_LOADED")
 	self.ADDON_LOADED = nil
-	
+
 	if(name ~= 'Blizzard_GMChatUI') then return end
 
 	GMChatFrame:EnableMouseWheel()
