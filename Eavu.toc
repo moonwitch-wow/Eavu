@@ -21,7 +21,6 @@ modules\panels.lua
 modules\autorepair.lua
 modules\broker.lua
 modules\color_friends.lua
-modules\nameplates.lua
 modules\quest_stuff.lua
 modules\slashcommands.lua
 modules\tweaks.lua
