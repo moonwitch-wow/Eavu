@@ -16,12 +16,11 @@ modules\panels.lua
 modules\slashcommands.lua
 modules\tweaks.lua
 modules\broker.lua
-
-modules\autorepair.lua
 modules\broker_bags.lua
 modules\broker_money.lua
 modules\broker_perf.lua
-modules\color_friends.lua
+
+modules\autorepair.lua
 modules\combatlog.lua
 modules\fisher.lua
 modules\notifications.lua
