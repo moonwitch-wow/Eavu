@@ -17,7 +17,7 @@ EavuDB["panels"] = {
   --["width"] = 401, -- desktop
   --["height"] = 25, -- desktop
   ["width"] = 300, -- Macbook
-  ["height"] = 25, -- Macbook
+  ["height"] = 20, -- Macbook
 }
 
 --------------------------------------------
