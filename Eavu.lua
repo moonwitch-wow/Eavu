@@ -9,12 +9,6 @@ EavuDB = { }
 EavuDB["media"] = {
   ["font"] = STANDARD_TEXT_FONT,
   ["fontSize"] = 12,
-  ["texture"] = { -- the main texture for all borders/panels
-    bgFile = "Interface\\Buttons\\WHITE8x8"
-    edgeFile = "Interface\\Buttons\\WHITE8x8"
-    edgeSize = 1,
-    insets = { left = -1, right = -1, top = -1, bottom = -1}
-    },
   ["bordercolor"] = { .6,.6,.6,1 }, -- border color of Eavu panels
   ["backdropcolor"] = { .1,.1,.1,1 }, -- background color of Eavu panels
 }
