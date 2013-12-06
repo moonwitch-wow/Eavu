@@ -1,0 +1,16 @@
+{
+    "folders":
+    [
+        {
+            "follow_symlinks": true,
+            "path": "/Applications/World of Warcraft/Interface/AddOns/Eavu"
+        }
+    ],
+    "settings":
+    {
+        "word_wrap": true,
+        "translate_tabs_to_spaces": true,
+        "tab_size": 2,
+        "use_tab_stops": true
+    }
+}
