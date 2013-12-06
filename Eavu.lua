@@ -1,78 +1,83 @@
--- This is roughly based on IHasNoScope from Haste.
--- Tweaks.lua is taken mostly from p3lim
+--------------------------------------------
+-- Config
+--------------------------------------------
+local frame, Eavu = CreateFrame("Frame"), {} -- sets frame to be used for the hooks, and Eavu to a usable table
 
--- Some constants
-local _G = _G
-local _, Eavu = ...
-local fontSize = 14
-local EavuUiScale = GetCVar('uiScale')
+EavuDB = { }
+
+EavuDB["media"] = {
+  ["font"] = STANDARD_TEXT_FONT,
+  ["fontSize"] = 12,
+  ["texture"] = { -- the main texture for all borders/panels
+    bgFile = "Interface\\Buttons\\WHITE8x8"
+    edgeFile = "Interface\\Buttons\\WHITE8x8"
+    edgeSize = 1,
+    insets = { left = -1, right = -1, top = -1, bottom = -1}
+    },
+  ["bordercolor"] = { .6,.6,.6,1 }, -- border color of Eavu panels
+  ["backdropcolor"] = { .1,.1,.1,1 }, -- background color of Eavu panels
+}
+
+EavuDB["panels"] = {
+  --["width"] = 401, -- desktop
+  --["height"] = 25, -- desktop
+  ["width"] = 300, -- Macbook
+  ["height"] = 25, -- Macbook
+}
+
+--------------------------------------------
+-- Utilities
+--------------------------------------------
+function Eavu.dummy() end -- empty func
+
+local Eavu.UiScale = GetCVar('uiScale')
 local res = GetCVar('gxResolution')
 
--- I got tired of typing this all the damn time k?
-local backdrop = {bgFile = "Interface\\Buttons\\WHITE8x8", edgeFile = "Interface\\Buttons\\WHITE8x8", edgeSize = 1, insets = { left = -1, right = -1, top = -1, bottom = -1}}
+local mult = 768/string.match(GetCVar('gxResolution'), '%d+x(%d+)')/(Eavu.UiScale or 1)
 
-function Eavu.GetScreen(hor, ver)
-	local horScreen = string.match(({GetScreenResolutions()})[res], '(%d+)x%d+')
-	local verScreen = string.match(({GetScreenResolutions()})[res], '%d+x(%d+)')
-	if arg1 == 'hor' then
-		return horScreen
-	elseif arg1 == 'ver' then
-		return verScreen
-	else
-		return
-	end
+function Eavu.Scale(x)
+  return mult*math.floor(x/mult+.5)
 end
 
-Eavu.dummy = function() end
-
-local mult = 768/string.match(GetCVar('gxResolution'), '%d+x(%d+)')/(EavuUiScale or 1)
-
-local function scale(x)
-    return mult*math.floor(x/mult+.5)
+function Eavu.CreatePanel(frameName, width, height, anchor1, parent, anchor2, x, y)
+  frameName:SetFrameLevel(1)
+  frameName:SetHeight(Eavu.Scale(height))
+  frameName:SetWidth(Eavu.Scale(width))
+  frameName:SetFrameStrata('BACKGROUND')
+  frameName:SetPoint(anchor1, parent, anchor2, x, y)
+  frameName:SetBackdrop(unpack(EavuDB['media'].texture))
+  frameName:SetBackdropColor(unpack(EavuDB['media'].backdropcolor))
+  frameName:SetBackdropBorderColor(unpack(EavuDB['media'].bordercolor))
 end
 
-function Eavu.Scale(x) return scale(x) end
-
-function Eavu.CreatePanel(f, w, h, anchor1, parent, anchor2, x, y)
-	sh = scale(h)
-	sw = scale(w)
-	f:SetFrameLevel(1)
-	f:SetHeight(sh)
-	f:SetWidth(sw)
-	f:SetFrameStrata('BACKGROUND')
-	f:SetPoint(anchor1, parent, anchor2, x, y)
-	f:SetBackdrop(backdrop)
-	f:SetBackdropColor(unpack(EavuDB['media'].backdropcolor))
-	f:SetBackdropBorderColor(unpack(EavuDB['media'].bordercolor))
+function Eavu.Print(...) -- for debugging if needed
+  print('|cffff8080 Eavu.|r', ...)
 end
 
-function Eavu.Print(...)
-	print('|cffff8080 Eavu.|r', ...)
+--------------------------------------------
+-- Event Handling
+--------------------------------------------
+function events:ADDON_LOADED(...)
+  self:UnregisterEvent("ADDON_LOADED")
+  self.ADDON_LOADED = nil
+
+  if IsLoggedIn() then self:PLAYER_LOGIN() else self:RegisterEvent("PLAYER_LOGIN") end
 end
 
-function Eavu.ADDON_LOADED(event, addon)
-	self:UnregisterEvent("ADDON_LOADED")
-	self.ADDON_LOADED = nil
+function events:PLAYER_LOGIN(...)
+  self:RegisterEvent("PLAYER_LOGOUT")
 
-	if(name ~= 'Blizzard_GMChatUI') then return end
+  HidePartyFrame()
+  Eavu.CreateLayout()
 
-	GMChatFrame:EnableMouseWheel()
-	GMChatFrame:SetScript('OnMouseWheel', ChatFrame1:GetScript('OnMouseWheel'))
-	GMChatFrame:SetHeight(GMChatFrame:GetHeight() * 3)
-
-	if IsLoggedIn() then self:PLAYER_LOGIN() else self:RegisterEvent("PLAYER_LOGIN") end
+  self:UnregisterEvent("PLAYER_LOGIN")
+  self.PLAYER_LOGIN = nil
 end
 
-function Eavu.PLAYER_LOGIN()
-	self:RegisterEvent("PLAYER_LOGOUT")
+frame:SetScript("OnEvent", function(self, event, ...)
+ events[event](self, ...); -- call one of the functions above
+end)
 
-	HidePartyFrame()
-	Eavu.CreateLayout()
-
-	self:UnregisterEvent("PLAYER_LOGIN")
-	self.PLAYER_LOGIN = nil
-end
-
-function Eavu.PLAYER_LOGOUT()
-	-- Do anything you need to do as the player logs out
+for k, v in pairs(events) do
+ frame:RegisterEvent(k); -- Register all events for which handlers have been defined
 end
