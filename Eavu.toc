@@ -1,4 +1,4 @@
-## Interface: 50200
+## Interface: 50400
 ## Author: MoonWitch
 ## Title: Eavu
 ## Version: 1.2
@@ -9,19 +9,20 @@
 libs\libs.xml
 
 cvars.lua
-config.lua
 Eavu.lua
 
 ##all the broker parts - need to be loaded before the rest :P
+modules\autorepair.lua
+modules\broker.lua
 modules\broker_bags.lua
 modules\broker_money.lua
 modules\broker_perf.lua
-modules\combatlog.lua
-modules\panels.lua
-modules\autorepair.lua
-modules\broker.lua
 modules\color_friends.lua
+modules\combatlog.lua
+modules\fisher.lua
+modules\notifications.lua
+modules\panels.lua
+modules\professionalism.lua
 modules\quest_stuff.lua
 modules\slashcommands.lua
 modules\tweaks.lua
-modules\fisher.lua
