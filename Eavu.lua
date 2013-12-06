@@ -75,9 +75,9 @@ function events:PLAYER_LOGIN(...)
 end
 
 frame:SetScript("OnEvent", function(self, event, ...)
- events[event](self, ...); -- call one of the functions above
+ Eavu[event](self, ...); -- call one of the functions above
 end)
 
-for k, v in pairs(events) do
+for k, v in pairs(Eavu) do
  frame:RegisterEvent(k); -- Register all events for which handlers have been defined
 end
