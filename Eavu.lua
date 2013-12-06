@@ -26,14 +26,19 @@ EavuDB["panels"] = {
 function Eavu.dummy() end -- empty func
 
 function Eavu.CreatePanel(frameName, width, height, anchor1, parent, anchor2, x, y)
-  frameName:SetFrameLevel(1)
-  frameName:SetHeight(Eavu.Scale(height))
-  frameName:SetWidth(Eavu.Scale(width))
-  frameName:SetFrameStrata('BACKGROUND')
-  frameName:SetPoint(anchor1, parent, anchor2, x, y)
-  frameName:SetBackdrop(unpack(EavuDB['media'].texture))
-  frameName:SetBackdropColor(unpack(EavuDB['media'].backdropcolor))
-  frameName:SetBackdropBorderColor(unpack(EavuDB['media'].bordercolor))
+  local frame = CreateFrame("Frame", frameName)
+  frame:SetFrameLevel(1)
+  frame:SetHeight(height)
+  frame:SetWidth(width)
+  frame:SetFrameStrata('BACKGROUND')
+  frame:SetPoint(anchor1, parent, anchor2, x, y)
+  frame:SetBackdrop({bgFile = "Interface\\Buttons\\WHITE8x8",
+    edgeFile = "Interface\\Buttons\\WHITE8x8",
+    edgeSize = 1,
+    insets = { left = -1, right = -1, top = -1, bottom = -1}
+    })
+  frame:SetBackdropColor(unpack(EavuDB['media'].backdropcolor))
+  frame:SetBackdropBorderColor(unpack(EavuDB['media'].bordercolor))
 end
 
 function Eavu.Print(...) -- for debugging if needed
