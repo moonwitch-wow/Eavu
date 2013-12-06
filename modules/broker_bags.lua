@@ -1,3 +1,6 @@
+--------------------------------------------
+-- Creating DataObject
+--------------------------------------------
 local pName = "Eavu_Bags"
 local f = CreateFrame("frame")
 local ldb = LibStub:GetLibrary("LibDataBroker-1.1")
@@ -10,6 +13,9 @@ local dataobj = ldb:NewDataObject(pName, {
   end
 })
 
+--------------------------------------------
+-- Populating the LDB object
+--------------------------------------------
 -- Set this to false if you want to disable text coloring
 local color = true
 
@@ -25,11 +31,11 @@ f:SetScript("OnEvent", function()
     free = free + GetContainerNumFreeSlots(i)
   end
   used = total - free
-  
+
   local tColor = "|r"
   if color then
     local p = used / total
-    
+
     if p > 0.8 then
       tColor = "|cffDD3A00"
     elseif p > 0.6 then
@@ -42,6 +48,6 @@ f:SetScript("OnEvent", function()
       tColor = "|cff00FF00"
     end
   end
-  
+
   dataobj.text = format("%s%i/%i", tColor, used, total)
 end)
