@@ -25,7 +25,7 @@ EavuDB["panels"] = {
 --------------------------------------------
 function Eavu.dummy() end -- empty func
 
-function Eavu.CreatePanel(frameName, width, height, anchor1, parent, anchor2, x, y)
+function CreateEavuPanel(frameName, width, height, anchor1, parent, anchor2, x, y)
   local frame = CreateFrame("Frame", frameName)
   frame:SetFrameLevel(1)
   frame:SetHeight(height)
@@ -41,7 +41,7 @@ function Eavu.CreatePanel(frameName, width, height, anchor1, parent, anchor2, x,
   frame:SetBackdropBorderColor(unpack(EavuDB['media'].bordercolor))
 end
 
-function Eavu.Print(...) -- for debugging if needed
+function EavuPrint(...) -- for debugging if needed
   print('|cffff8080 Eavu.|r', ...)
 end
 
@@ -53,10 +53,10 @@ function Eavu.ADDON_LOADED(...)
   Eavu:CreateLayout()
 end
 
-frame:SetScript("OnEvent", function(self, event, ...)
- Eavu[event](self, ...); -- call one of the functions above
-end)
-
 for k, v in pairs(Eavu) do
  frame:RegisterEvent(k); -- Register all events for which handlers have been defined
 end
+
+frame:SetScript("OnEvent", function(self, event, ...)
+ Eavu[event](self, ...); -- call one of the functions above
+end)
