@@ -25,15 +25,6 @@ EavuDB["panels"] = {
 --------------------------------------------
 function Eavu.dummy() end -- empty func
 
-local Eavu.UiScale = GetCVar('uiScale')
-local res = GetCVar('gxResolution')
-
-local mult = 768/string.match(GetCVar('gxResolution'), '%d+x(%d+)')/(Eavu.UiScale or 1)
-
-function Eavu.Scale(x)
-  return mult*math.floor(x/mult+.5)
-end
-
 function Eavu.CreatePanel(frameName, width, height, anchor1, parent, anchor2, x, y)
   frameName:SetFrameLevel(1)
   frameName:SetHeight(Eavu.Scale(height))
