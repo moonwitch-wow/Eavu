@@ -57,14 +57,14 @@ end
 --------------------------------------------
 -- Event Handling
 --------------------------------------------
-function events:ADDON_LOADED(...)
+function Eavu:ADDON_LOADED(...)
   self:UnregisterEvent("ADDON_LOADED")
   self.ADDON_LOADED = nil
 
   if IsLoggedIn() then self:PLAYER_LOGIN() else self:RegisterEvent("PLAYER_LOGIN") end
 end
 
-function events:PLAYER_LOGIN(...)
+function Eavu:PLAYER_LOGIN(...)
   self:RegisterEvent("PLAYER_LOGOUT")
 
   HidePartyFrame()
@@ -75,9 +75,9 @@ function events:PLAYER_LOGIN(...)
 end
 
 frame:SetScript("OnEvent", function(self, event, ...)
- events[event](self, ...); -- call one of the functions above
+ Eavu[event](self, ...); -- call one of the functions above
 end)
 
-for k, v in pairs(events) do
+for k, v in pairs(Eavu) do
  frame:RegisterEvent(k); -- Register all events for which handlers have been defined
 end
