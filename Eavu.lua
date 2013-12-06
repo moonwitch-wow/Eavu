@@ -48,21 +48,9 @@ end
 --------------------------------------------
 -- Event Handling
 --------------------------------------------
-function Eavu:ADDON_LOADED(...)
-  self:UnregisterEvent("ADDON_LOADED")
-  self.ADDON_LOADED = nil
-
-  if IsLoggedIn() then self:PLAYER_LOGIN() else self:RegisterEvent("PLAYER_LOGIN") end
-end
-
-function Eavu:PLAYER_LOGIN(...)
-  self:RegisterEvent("PLAYER_LOGOUT")
-
+function Eavu.ADDON_LOADED(...)
   HidePartyFrame()
-  Eavu.CreateLayout()
-
-  self:UnregisterEvent("PLAYER_LOGIN")
-  self.PLAYER_LOGIN = nil
+  Eavu:CreateLayout()
 end
 
 frame:SetScript("OnEvent", function(self, event, ...)
