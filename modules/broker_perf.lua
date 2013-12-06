@@ -1,13 +1,16 @@
-------------------------------
--- Localizing some crap --
-------------------------------
+--------------------------------------------
+-- Localizing
+--------------------------------------------
 local UPDATEPERIOD, MEMTHRESH = 0.5, 32
 local prevmem, elapsed, tipshown = collectgarbage("count"), 0.5
 local string_format, math_modf, GetNetStats, GetFramerate, collectgarbage = string.format, math.modf, GetNetStats, GetFramerate, collectgarbage
 local MAXADDONS = 15
 local fperf = CreateFrame("frame")
 
---TEKKUB created function for color gradience, awesome!--
+--------------------------------------------
+-- Util Funcs
+--------------------------------------------
+-- thanks @Tekkub for this function
 local ColorGradient = function(perc, r1, g1, b1, r2, g2, b2, r3, g3, b3)
 	if perc >= 1 then return r3, g3, b3 elseif perc <= 0 then return r1, g1, b1 end
 	local segment, relperc = math_modf(perc*2)
@@ -21,24 +24,24 @@ local function usageSort(a,b) -- sort based on usage
 	return aMem > bMem
 end
 
-------------------------
---    DataObjectify   --
-------------------------
-local dataobj = LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObject("Eavu_Perf", 
+--------------------------------------------
+-- Creating DataObject
+--------------------------------------------
+local dataobj = LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObject("Eavu_Perf",
 	{
 	type = "data source",
 	text = "75.0fps 75ms",
 	label = "Perf",
-	
-	--------
-	-- Enter the Dragon
-	--------
+
+--------------------------------------------
+-- Creating Tooltip - thus the majik
+--------------------------------------------
 	OnEnter = function(self)
 		GameTooltip:SetOwner(self)
 		GameTooltip:ClearLines()
 
 		GameTooltip:AddLine("Eavu Performance Monitor")
-		
+
 		local addons, addon, total = {}, {}, 0
 
 		for i=1, GetNumAddOns() do
@@ -67,7 +70,7 @@ local dataobj = LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObject("Eavu_Perf
 		local mem = collectgarbage("count")
 		local r, g, b = ColorGradient(mem/(20*1024), 0,1,0, 1,1,0, 1,0,0)
 		GameTooltip:AddDoubleLine("Default UI memory:", string_format("%.2f MiB", (gcinfo()-total)/1024), nil,nil,nil, r,g,b)
-		
+
 		GameTooltip:AddLine("------------------------------")
 		GameTooltip:AddLine("Click to take out the trash :P")
 
@@ -81,13 +84,15 @@ local dataobj = LibStub:GetLibrary("LibDataBroker-1.1"):NewDataObject("Eavu_Perf
 	end,
 	})
 
-------------------------
---    Updates 
-------------------------
+--------------------------------------------
+-- Update Funcs -
+-- this makes sure the text is correct
+-- And colorized it
+--------------------------------------------
 fperf:SetScript("OnUpdate", function(self, elap)
 	elapsed = elapsed + elap
 	if elapsed < UPDATEPERIOD then return end
-	
+
 	elapsed = 0
 	local fps = GetFramerate()
 	local _, _, lag = GetNetStats()
