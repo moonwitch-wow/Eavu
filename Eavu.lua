@@ -1,7 +1,8 @@
 --------------------------------------------
 -- Config
 --------------------------------------------
-local frame, Eavu = CreateFrame("Frame"), {} -- sets frame to be used for the hooks, and Eavu to a usable table
+local __, Eavu = ...
+local frame = CreateFrame("Frame")-- sets frame to be used for the hooks, and Eavu to a usable table
 
 EavuDB = { }
 
