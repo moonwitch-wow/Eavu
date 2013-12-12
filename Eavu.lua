@@ -23,7 +23,7 @@ EavuDB["panels"] = {
 --------------------------------------------
 -- Utilities
 --------------------------------------------
-function Eavu.dummy() end -- empty func
+function Eavudummy() end -- empty func
 
 function CreateEavuPanel(frameName, width, height, anchor1, parent, anchor2, x, y)
   local frame = CreateFrame("Frame", frameName)
