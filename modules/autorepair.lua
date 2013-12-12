@@ -14,19 +14,39 @@ function money_to_string(value)
   return string.format("|cffffd700%i|r.|cffc7c7cf%02i|r.|cffeda55f%02i|r", gold, silver, copper)
 end
 
-function earned(value)
-  return value > 0 and "|cff00ff00Profit|r" or value < 0 and "|cffff0000Loss|r" or nil
-end
-
 function Eavu.MERCHANT_SHOW()
 -- Func to AutoRepair from guild if you can repair from guild and haven't exceeded the total amount
-  if (CanMerchantRepair()) then -- can we repair from this dude?
+  if (CanMerchantRepair() and CanGuildBankRepair()) then -- can we repair from this dude?
     RepairAllItems(CanGuildBankRepair() and GetGuildBankWithdrawMoney() >= GetRepairAllCost())
-    Eavu.print('Repaired for:'..GetRepairAllCost())
+    print('Guild repaired for :'..money_to_string(GetRepairAllCost()))
   end
--- Func to vendor all greys and print out for how much
 
-  self:UnregisterEvent("MERCHANT_SHOW") -- Unregistering the correct event as well
+-- Func to vendor all greys and print out for how much
+  local bag, slot
+    local numberSold, valueSold = 0, 0
+
+    for bag = 0, 4 do
+        for slot = 1, GetContainerNumSlots(bag) do
+            local _, count, _, _, _, _, link = GetContainerItemInfo(bag, slot)
+            if link then
+                local _, _, quality, _, _, _, _, _, _, _, vendorPrice = GetItemInfo(link)
+
+                if quality == 0 and vendorPrice > 0 then
+                    ShowContainerSellCursor(bag, slot)
+                    UseContainerItem(bag, slot)
+
+                    numberSold = numberSold + count
+                    valueSold = valueSold + vendorPrice * count
+                end
+            end
+        end
+    end
+
+    if numberSold > 0 then
+        EavuPrint('Sold %d items for a total value of %s.', numberSold, GetMoneyString(valueSold))
+    end
+
+  frame:UnregisterEvent("MERCHANT_SHOW") -- Unregistering the correct event as well
 end
 
 frame:SetScript("OnEvent", function(self, event, ...)
