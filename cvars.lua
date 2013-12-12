@@ -2,6 +2,7 @@ local __, Eavu = ...
 
 function Eavu.CreateLayout()  -- Cvars and Chatsettings :P
   -- UIScale
+  SetCVar('uiScale',1)
   SetCVar('useUiScale', math.floor(768/UIParent:GetHeight()))
 
   -- Chat CVARS
@@ -28,14 +29,14 @@ function Eavu.CreateLayout()  -- Cvars and Chatsettings :P
   SetCVar('assistAttack',0)
   SetCVar('autoClearAFK',1)
   SetCVar('autoDismount',1)
-  SetCVar('autoDismountFlying',1)
+  SetCVar('autoDismountFlying',0)
   SetCVar('AutoInteract',0) -- Enables Right-click to move
   SetCVar('autoLootDefault',1) -- Enables auto-looting of corpses
   SetCVar('autoSelfCast',1)
   SetCVar('autoStand',1)
   SetCVar('autoUnshift',1)
   SetCVar('BlockTrades',1) -- Block trade requests
-  SetCVar('deselectOnClick',1) -- Sticky targetting
+  SetCVar('deselectOnClick',0) -- Sticky targetting
   SetCVar('lootUnderMouse',1)
   SetCVar('maxSpellStartRecoveryoffset',1)
   SetCVar('secureAbilityToggle',1)
@@ -74,7 +75,7 @@ function Eavu.CreateLayout()  -- Cvars and Chatsettings :P
   SetCVar('characterFrameCollapsed',1)
   SetCVar('colorChatNamesByClass',1)
   SetCVar('consolidateBuffs',0)
-  SetCVar('colorblindMode', 1)
+  SetCVar('colorblindMode', 0)
   SetCVar('digSites',1)
   SetCVar('displaySpellActivationOverlays',1)
   SetCVar('displayWorldPVPObjectives',1)
@@ -110,8 +111,8 @@ function Eavu.CreateLayout()  -- Cvars and Chatsettings :P
   SetCVar('synchronizeMacros',1)
   SetCVar('synchronizeSettings',0)
   SetCVar('taintLog',1)
-  SetCVar('UberTooltips',0)
-  SetCVar('uiScale',1)
+  SetCVar('UberTooltips',1)
+
   SetCVar('UnitNameEnemyGuardianName',1)
   SetCVar('UnitNameEnemyPetName',1)
   SetCVar('UnitNameEnemyPlayerName',1)
