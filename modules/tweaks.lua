@@ -1,38 +1,34 @@
-local _, Eavu = ...
-local soundFile = "Sound\\Interface\\ReadyCheck.wav"
-local MATCH_STRING = ERR_FRIEND_ONLINE_SS:format(".+", "(.+)")
+-- local __, Eavu = ...
+-- local soundFile = [=[Sound\Interface\ReadyCheck.wav]=]
 
--- One day I hoped to kill my FCT
-Eavu.RegisterEvent('PLAYER_REGEN_ENABLED', function()
-  UIErrorsFrame:AddMessage('-- Combat', 1, 1, 1)
-end)
+-- -- One day I hoped to kill my FCT
+-- Eavu.RegisterEvent('PLAYER_REGEN_ENABLED', function()
+--   UIErrorsFrame:AddMessage('-- Combat', 1, 1, 1)
+-- end)
 
-Eavu.RegisterEvent('PLAYER_REGEN_DISABLED', function()
-  UIErrorsFrame:AddMessage('++ Combat', 1, 1, 1)
-end)
+-- Eavu.RegisterEvent('PLAYER_REGEN_DISABLED', function()
+--   UIErrorsFrame:AddMessage('++ Combat', 1, 1, 1)
+-- end)
 
--- Because I don't focus on other chat tabs (namely general)
-local function notifyMePlz(msg)
-  local name = msg:match(MATCH_STRING)
-  UIErrorsFrame:AddMessage("|Hplayer:%s|h[%s]|h has come online.")
-end
-Eavu.RegisterEvent('CHAT_MSG_SYSTEM', notifyMePlz)
-Eavu.RegisterEvent('GUILD_ROSTER_UPDATE', notifyMePlz)
+-- -- Autoaccept guildies' PARTY_INVITE_REQUEST
+-- Eavu.RegisterEvent('PARTY_INVITE_REQUEST', function(name, l, f, g)
+--   if(l or f or g) then return end
 
-Eavu.RegisterEvent('LFG_PROPOSAL_SHOW', function()
-        PlaySoundFile(soundFile, 'Master')
-end)
+--   for index = 1, select(2, GetNumGuildMembers()) do
+--     if(GetGuildRosterInfo(index) == name) then
+--       return AcceptGroup()
+--     end
+--   end
 
-ReadyCheckListenerFrame:SetScript('OnShow', function()
-        PlaySoundFile(soundFile, 'Master')
-end)
+--   for index = 1, select(2, BNGetNumFriends()) do
+--     if(string.match(select(5, BNGetFriendInfo(index)), name)) then
+--       return AcceptGroup()
+--     end
+--   end
 
-Eavu.RegisterEvent('PARTY_INVITE_REQUEST', function()
-        PlaySoundFile(soundFile, 'Master')
-end)
-
-Eavu.RegisterEvent('CHAT_MSG_RAID_BOSS_WHISPER', function(msg, name)
-  if(name == UnitName('player') and msg == 'You are next in line!') then
-          PlaySoundFile(soundFile, 'Master')
-  end
-end)
+--   for index = 1, GetNumFriends() do
+--     if(GetFriendInfo(index) == name) then
+--       return AcceptGroup()
+--     end
+--   end
+-- end)
