@@ -1,17 +1,17 @@
 --------------------------------------------
 -- Left Side
 --------------------------------------------
-local guild = LibStub('LibCargoShip-2.1'):CreateBlock('SocialState', {
+local guild = LibStub('LibCargoShip-2.1'):CreateBlock('|cFFFFB366Ara|r Guild', {
   })
 guild:SetPoint("LEFT", BottomPanel, "LEFT", 10, 0)
 
--- local friends = LibStub('LibCargoShip-2.1'):CreateBlock('Folks_Friends', {
---  })
--- friends:SetPoint("LEFT", guild, "RIGHT", 40, 0)
+local friends = LibStub('LibCargoShip-2.1'):CreateBlock('|cFFFFB366Ara|r Friends', {
+ })
+friends:SetPoint("LEFT", guild, "RIGHT", 40, 0)
 
 local dura= LibStub("LibCargoShip-2.1"):CreateBlock("Durability", {
   })
-dura:SetPoint("LEFT", guild, "RIGHT", 40, 0)
+dura:SetPoint("LEFT", friends, "RIGHT", 40, 0)
 
 --------------------------------------------
 -- Right Side
