@@ -16,14 +16,21 @@ end
 
 function Eavu.MERCHANT_SHOW()
 -- Func to AutoRepair from guild if you can repair from guild and haven't exceeded the total amount
-  if (CanMerchantRepair() and CanGuildBankRepair()) then -- can we repair from this dude?
-    RepairAllItems(CanGuildBankRepair() and GetGuildBankWithdrawMoney() >= GetRepairAllCost())
-    print('Guild repaired for :'..money_to_string(GetRepairAllCost()))
+  if not CanMerchantRepair() then
+    return
+  else
+    if (IsInGuild() and CanGuildBankRepair()) then -- can we repair from this dude?
+      RepairAllItems(CanGuildBankRepair() and GetGuildBankWithdrawMoney() >= GetRepairAllCost())
+      print('Guild repaired for :'..money_to_string(GetRepairAllCost()))
+    else
+      RepairAllItems()
+      print('Repaired for :'..money_to_string(GetRepairAllCost()))
+    end
   end
 
 -- Func to vendor all greys and print out for how much
   local bag, slot
-    local numberSold, valueSold = 0, 0
+    local valueSold = 0, 0
 
     for bag = 0, 4 do
         for slot = 1, GetContainerNumSlots(bag) do
@@ -35,18 +42,16 @@ function Eavu.MERCHANT_SHOW()
                     ShowContainerSellCursor(bag, slot)
                     UseContainerItem(bag, slot)
 
-                    numberSold = numberSold + count
                     valueSold = valueSold + vendorPrice * count
                 end
             end
         end
     end
-
-    if numberSold > 0 then
-        EavuPrint('Sold %d items for a total value of %s.', numberSold, GetMoneyString(valueSold))
+    if valueSold > 0 then
+      EavuPrint('Sold stuff for ', GetMoneyString(valueSold))
     end
 
-  frame:UnregisterEvent("MERCHANT_SHOW") -- Unregistering the correct event as well
+  -- frame:UnregisterEvent("MERCHANT_SHOW") -- Unregistering the correct event as well
 end
 
 frame:SetScript("OnEvent", function(self, event, ...)
