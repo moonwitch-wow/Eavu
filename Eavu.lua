@@ -9,8 +9,8 @@ EavuDB = { }
 EavuDB["media"] = {
   ["font"] = STANDARD_TEXT_FONT,
   ["fontSize"] = 12,
-  ["bordercolor"] = { .6,.6,.6,1 }, -- border color of Eavu panels
-  ["backdropcolor"] = { .1,.1,.1,1 }, -- background color of Eavu panels
+  ["bordercolor"] = { .2,.2,.2,.8 }, -- border color of Eavu panels
+  ["backdropcolor"] = { .1,.1,.1,.8 }, -- background color of Eavu panels
 }
 
 EavuDB["panels"] = {
@@ -42,7 +42,7 @@ function CreateEavuPanel(frameName, width, height, anchor1, parent, anchor2, x, 
 end
 
 function EavuPrint(...) -- for debugging if needed
-  print('|cffff8080 Eavu.|r', ...)
+  print('|cffff8080Eavu.|r', ...)
 end
 
 --------------------------------------------
