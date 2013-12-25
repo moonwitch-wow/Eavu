@@ -25,4 +25,3 @@ modules\combatlog.lua
 modules\fisher.lua
 modules\notifications.lua
 modules\professionalism.lua
-modules\quest_stuff.lua
