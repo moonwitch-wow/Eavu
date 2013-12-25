@@ -2,8 +2,8 @@ local __, Eavu = ...
 
 function Eavu.CreateLayout()  -- Cvars and Chatsettings :P
   -- UIScale
-  SetCVar('uiScale',1)
-  SetCVar('useUiScale', math.floor(768/UIParent:GetHeight()))
+  -- SetCVar('useUiScale',1)
+  -- SetCVar('uiScale', math.floor(768/UIParent:GetHeight()))
 
   -- Chat CVARS
   SetCVar('autoCompleteResortNamesOnRecency',1)
