@@ -21,10 +21,14 @@ function Eavu.MERCHANT_SHOW()
   else
     if (IsInGuild() and CanGuildBankRepair()) then -- can we repair from this dude?
       RepairAllItems(CanGuildBankRepair() and GetGuildBankWithdrawMoney() >= GetRepairAllCost())
-      print('Guild repaired for :'..money_to_string(GetRepairAllCost()))
+      if GetRepairAllCost() > 0 then
+        print('Guild repaired for :'..money_to_string(GetRepairAllCost()))
+      end
     else
       RepairAllItems()
-      print('Repaired for :'..money_to_string(GetRepairAllCost()))
+      if GetRepairAllCost() > 0 then
+        print('Repaired for :'..money_to_string(GetRepairAllCost()))
+      end
     end
   end
 
