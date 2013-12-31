@@ -49,7 +49,6 @@ end
 -- Event Handling
 --------------------------------------------
 function Eavu.ADDON_LOADED(...)
-  HidePartyFrame()
   Eavu:CreateLayout()
 end
 
