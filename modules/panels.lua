@@ -18,24 +18,73 @@ CreateEavuPanel("BottomPanel" , UIParent:GetWidth()-10, UIParent:GetHeight()/45,
 
 -----------------------------
 -- On Enter/On Leave
--- Syntax UIFrameFadeOut(frame, timeToFade, startAlpha, endAlpha)
--- UIFrameFadeIn(frame, timeToFade, startAlpha, endAlpha)
--- Turns out I need to get the children for this to work as intended.
--- local innieAndOutie = function(self)
---   local panels = {}
---   panels = BottomPanel:GetChildren()
---   tinsert(panels, #panels+1, BottomPanel)
 
---   if panels:
---   UIFrameFadeIn
+local FADE_IN_ALPHA = 1
+local FADE_IN_DELAY = 0.1
+local FADE_IN_DURATION = 0.2
+
+local FADE_OUT_ALPHA = 0
+local FADE_OUT_DELAY = 0.2
+local FADE_OUT_DURATION = 0.4
+
+local fadeGroup = BottomPanel:CreateAnimationGroup()
+local fadeAnim = fadeGroup:CreateAnimation("Alpha")
+fadeGroup:SetLooping("NONE")
+fadeGroup:SetScript("OnFinished", function(self)
+  BottomPanel:SetAlpha(self.targetAlpha)
+end)
+BottomPanel:SetAlpha(FADE_OUT_ALPHA)
+
+local function FadeIn(self)
+  fadeGroup:Stop()
+  local a = floor(self:GetAlpha() * 100 + 0.5) / 100
+  local d = FADE_IN_ALPHA - a
+  local t = (FADE_IN_DURATION * d) / (FADE_IN_ALPHA - FADE_OUT_ALPHA)
+  if d < 0.05 or t < 0.05 then
+    -- Don't bother animating
+    return self:SetAlpha(FADE_IN_ALPHA)
+  end
+  fadeAnim:SetChange(d)
+  fadeAnim:SetStartDelay(a == FADE_OUT_ALPHA and FADE_IN_DELAY or 0)
+  fadeAnim:SetDuration(t)
+  fadeGroup.targetAlpha = FADE_IN_ALPHA
+  fadeGroup:Play()
+end
+
+local function FadeOut(self)
+  local a = floor(self:GetAlpha() * 100 + 0.5) / 100
+  local d = a - FADE_OUT_ALPHA
+  local t = (FADE_OUT_DURATION * d) / (FADE_IN_ALPHA - FADE_OUT_ALPHA)
+  if d < 0.05 or t < 0.05 then
+    -- Don't bother animating
+    return self:SetAlpha(FADE_OUT_ALPHA)
+  end
+  fadeAnim:SetChange(-d)
+  fadeAnim:SetStartDelay(a == FADE_IN_ALPHA and FADE_OUT_DELAY or 0)
+  fadeAnim:SetDuration(t)
+  fadeGroup.targetAlpha = FADE_OUT_ALPHA
+  fadeGroup:Play()
+end
+
+BottomPanel:SetScript("OnEnter", function(self)
+  if self.isMouseOver then return end
+  self.isMouseOver = true
+  FadeIn(self)
+end)
+
+BottomPanel:SetScript("OnLeave", function(self)
+  if self:IsMouseOver() then return end
+  self.isMouseOver = nil
+  FadeOut(self)
+end)
+
+local function plugin_OnLeave(self)
+  self:GetParent():GetScript("OnLeave")(BottomPanel)
+end
+
+-- for i = 1, #textpanes do
+--   textpanes[i]:SetScript("OnLeave", plugin_OnLeave)
 -- end
-
-BottomPanel:SetScript("OnEnter", function()
-  BottomPanel:SetAlpha(1)
-  -- UIFrameFadeIn(BottomPanel, 2.0, 0.0, 1.0)
-end)
-
-BottomPanel:SetScript("OnLeave", function()
-  BottomPanel:SetAlpha(0)
-  -- UIFrameFadeOut(BottomPanel, 2.0, 1.0, 0.0)
-end)
+for i, v in ipairs(textpanes) do
+  print(i, v)
+end

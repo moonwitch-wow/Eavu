@@ -12,13 +12,10 @@ cvars.lua
 Eavu.lua
 
 ##all the broker parts - in order of neededness
-modules\panels.lua
+#modules\panels.lua
 modules\slashcommands.lua
 modules\tweaks.lua
-modules\broker.lua
-modules\broker_bags.lua
-modules\broker_money.lua
-modules\broker_perf.lua
+#modules\broker.lua
 
 modules\autorepair.lua
 modules\combatlog.lua
