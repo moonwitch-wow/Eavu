@@ -7,11 +7,12 @@ function Eavu.CreateLayout()  -- Cvars and Chatsettings :P
 
   -- Chat CVARS
   SetCVar('autoCompleteResortNamesOnRecency',1)
+  SetCVar("autoCompleteUseContext", 1)
   SetCVar('chatBubbles',0)
   SetCVar('chatBubblesParty',0)
   SetCVar('chatMouseScroll',1)
-  SetCVar('chatStyle','im')
-  SetCVar('conversationMode','popout')
+  SetCVar('chatStyle','classic')
+  SetCVar('conversationMode','inline')
   SetCVar('CombatDamage',1)
   SetCVar('CombatHealing',1)
   SetCVar('combatLogOn',1) -- Whether or not the combat log is shown
@@ -26,7 +27,7 @@ function Eavu.CreateLayout()  -- Cvars and Chatsettings :P
   SetCVar('spamFilter',1)
 
   -- Controls CVARS
-  SetCVar('assistAttack',0)
+  SetCVar('assistAttack',1)
   SetCVar('autoClearAFK',1)
   SetCVar('autoDismount',1)
   SetCVar('autoDismountFlying',0)
@@ -35,8 +36,8 @@ function Eavu.CreateLayout()  -- Cvars and Chatsettings :P
   SetCVar('autoSelfCast',1)
   SetCVar('autoStand',1)
   SetCVar('autoUnshift',1)
-  SetCVar('BlockTrades',1) -- Block trade requests
-  SetCVar('deselectOnClick',0) -- Sticky targetting
+  SetCVar('BlockTrades',0) -- Block trade requests
+  SetCVar('deselectOnClick',1) -- Sticky targetting
   SetCVar('lootUnderMouse',1)
   SetCVar('maxSpellStartRecoveryoffset',1)
   SetCVar('secureAbilityToggle',1)
@@ -63,7 +64,6 @@ function Eavu.CreateLayout()  -- Cvars and Chatsettings :P
   SetCVar('shadowMode',1)
   SetCVar('SkyCloudLOD',1)
   SetCVar('sunshafts',1)
-  SetCVar('violenceLevel',5)
   SetCVar('waterDetail',1) -- Enables water reflection (0 = old water, 1 = screen space reflection, 2 = dynamic reflection)
 
   -- Interface options
@@ -72,7 +72,7 @@ function Eavu.CreateLayout()  -- Cvars and Chatsettings :P
   SetCVar('alwaysCompareItems',0)
   SetCVar('alwaysShowActionBars',0)
   SetCVar('buffDurations',1)
-  SetCVar('characterFrameCollapsed',1)
+  SetCVar('characterFrameCollapsed',0)
   SetCVar('colorChatNamesByClass',1)
   SetCVar('consolidateBuffs',0)
   SetCVar('colorblindMode', 0)
@@ -113,15 +113,15 @@ function Eavu.CreateLayout()  -- Cvars and Chatsettings :P
   SetCVar('taintLog',1)
   SetCVar('UberTooltips',1)
 
-  SetCVar('UnitNameEnemyGuardianName',1)
+  SetCVar('UnitNameEnemyGuardianName',0)
   SetCVar('UnitNameEnemyPetName',1)
   SetCVar('UnitNameEnemyPlayerName',1)
-  SetCVar('UnitNameEnemyTotemName',1)
-  SetCVar('UnitNameFriendlyGuardianName',1)
-  SetCVar('UnitNameFriendlyPetName',1)
+  SetCVar('UnitNameEnemyTotemName',0)
+  SetCVar('UnitNameFriendlyGuardianName',0)
+  SetCVar('UnitNameFriendlyPetName',0)
   SetCVar('UnitNameFriendlyPlayerName',1)
   SetCVar('UnitNameFriendlySpecialNPCName',1)
-  SetCVar('UnitNameFriendlyTotemName',1)
+  SetCVar('UnitNameFriendlyTotemName',0)
   SetCVar('UnitNameGuildTitle',0)
   SetCVar('UnitNameNonCombatCreatureName',1)
   SetCVar('UnitNameNPC',1)
@@ -131,7 +131,6 @@ function Eavu.CreateLayout()  -- Cvars and Chatsettings :P
 
   -- Nameplates
   SetCVar('bloatnameplates',1)
-  SetCVar('bloattest',0)
   SetCVar('bloatthreat',1)
   SetCVar('nameplateShowEnemies',1)
   SetCVar('nameplateShowEnemyGuardians',1)
@@ -165,4 +164,7 @@ function Eavu.CreateLayout()  -- Cvars and Chatsettings :P
   SetCVar('raidOptionIsShown',0)
   SetCVar('useCompactPartyFrames',1)
   SetCVar('xpBarText',1)
+
+  -- My Mac settings
+  SetCVar("MacUseCommandAsControl", 1)
 end
