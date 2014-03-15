@@ -21,17 +21,17 @@ LibStub("LibDataBroker-1.1"):NewDataObject("CombatLogToggle", {
 })
 
 function handler.PLAYER_REGEN_DISABLED(...)
-  COMBATLOG:Hide()
-  _G[COMBATLOG:GetName().."Tab"]:Hide()
-  -- BottomPanel:Hide()
-  WatchFrameCollapseExpandButton:Click()  --collapse
+  -- COMBATLOG:Hide()
+  -- _G[COMBATLOG:GetName().."Tab"]:Hide()
+  -- -- BottomPanel:Hide()
+  -- WatchFrameCollapseExpandButton:Click()  --collapse
 end
 
 function handler.PLAYER_REGEN_ENABLED(...)
-  COMBATLOG:Show()
-  _G[COMBATLOG:GetName().."Tab"]:Show()
-  -- BottomPanel:Show()
-  WatchFrameCollapseExpandButton:Click()  --collapse
+  -- COMBATLOG:Show()
+  -- _G[COMBATLOG:GetName().."Tab"]:Show()
+  -- -- BottomPanel:Show()
+  -- WatchFrameCollapseExpandButton:Click()  --collapse
 end
 
 for k, v in pairs(handler) do
