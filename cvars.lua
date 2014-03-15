@@ -14,8 +14,8 @@ function Eavu.CreateLayout()  -- Cvars and Chatsettings :P
   SetCVar('chatStyle','classic')
   SetCVar('conversationMode','inline')
   SetCVar('CombatDamage',1)
-  SetCVar('CombatHealing',1)
-  SetCVar('combatLogOn',1) -- Whether or not the combat log is shown
+  SetCVar('CombatHealing',0)
+  SetCVar('combatLogOn',0) -- Whether or not the combat log is shown
   SetCVar('CombatLogPeriodicSpells',0) -- Enables periodic spells in combat log (?)
   SetCVar('guildMemberNotify',1)
   SetCVar('profanityFilter',0)
@@ -79,7 +79,7 @@ function Eavu.CreateLayout()  -- Cvars and Chatsettings :P
   SetCVar('digSites',1)
   SetCVar('displaySpellActivationOverlays',1)
   SetCVar('displayWorldPVPObjectives',1)
-  SetCVar('dontShowEquipmentSetsOnItems',0)
+  SetCVar('dontShowEquipmentSetsOnItems',1)
   SetCVar('enableCombatText',1)
   SetCVar('enablePVPNotifyAFK',1)
   SetCVar('friendsSmallView',1)
@@ -99,7 +99,7 @@ function Eavu.CreateLayout()  -- Cvars and Chatsettings :P
   SetCVar('predictedHealth',1)
   SetCVar('predictedPower',1)
   SetCVar('rotateMinimap',0)
-  SetCVar('screenEdgeFlash',0)
+  SetCVar('screenEdgeFlash',1)
   SetCVar('screenshotFormat','jpeg')
   SetCVar('screenshotQuality',10)
   SetCVar('scriptErrors',1)
