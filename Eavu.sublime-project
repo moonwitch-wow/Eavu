@@ -7,15 +7,15 @@
 		},
 		{
 			"follow_symlinks": true,
-			"path": "/Applications/World of Warcraft/Interface/AddOns/Eavu_Money"
-		},
-		{
-			"follow_symlinks": true,
 			"path": "/Applications/World of Warcraft/Interface/AddOns/Eavu_Bags"
 		},
 		{
 			"follow_symlinks": true,
 			"path": "/Applications/World of Warcraft/Interface/AddOns/Eavu_Perf"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "/Applications/World of Warcraft/Interface/AddOns/Eavu_Money"
 		}
 	],
 	"settings":
