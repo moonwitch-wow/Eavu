@@ -9,7 +9,7 @@ SlashCmdList.TICKETGM = ToggleHelpFrame
 SLASH_PROF1 = '/prof'
 SLASH_PROF2 = '/professions'
 SlashCmdList.PROF = function()
-  ToggleSpellBook(BOOKTYPE_PROFESSION)
+  CastSpell('Cooking')
 end
 
 SLASH_TEST1 = '/uitest'
