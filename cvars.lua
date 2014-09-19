@@ -1,5 +1,7 @@
 local _, Eavu = ...
 
+local WoD = select(4, GetBuildInfo()) >= 6e4
+
 function Eavu.CreateLayout()  -- Cvars and Chatsettings :P
   -- UIScale
   -- SetCVar('useUiScale',1)
@@ -16,7 +18,11 @@ function Eavu.CreateLayout()  -- Cvars and Chatsettings :P
   SetCVar('CombatDamage',1)
   SetCVar('CombatHealing',0)
   SetCVar('CombatHealing',1)
+
+if not WoD then
   SetCVar('combatLogOn',0) -- Whether or not the combat log is shown
+end
+
   SetCVar('CombatLogPeriodicSpells',0) -- Enables periodic spells in combat log (?)
   SetCVar('guildMemberNotify',1)
   SetCVar('profanityFilter',0)
