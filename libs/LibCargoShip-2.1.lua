@@ -11,7 +11,7 @@ local LDB = LibStub:GetLibrary("LibDataBroker-1.1")
 local lib, oldminor = LibStub:NewLibrary("LibCargoShip-2.1", 5)
 if(not lib) then return end
 
-local defaults = {__index={
+local defaults = {_index={
 	parent = UIParent,
 	width = 70,
 	height = 12,

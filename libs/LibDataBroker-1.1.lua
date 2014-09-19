@@ -13,13 +13,13 @@ local attributestorage, namestorage, callbacks = lib.attributestorage, lib.names
 
 if oldminor < 2 then
 	lib.domt = {
-		__metatable = "access denied",
-		__index = function(self, key) return attributestorage[self] and attributestorage[self][key] end,
+		_metatable = "access denied",
+		_index = function(self, key) return attributestorage[self] and attributestorage[self][key] end,
 	}
 end
 
 if oldminor < 3 then
-	lib.domt.__newindex = function(self, key, value)
+	lib.domt._newindex = function(self, key, value)
 		if not attributestorage[self] then attributestorage[self] = {} end
 		if attributestorage[self][key] == value then return end
 		attributestorage[self][key] = value
