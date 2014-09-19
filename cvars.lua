@@ -15,6 +15,7 @@ function Eavu.CreateLayout()  -- Cvars and Chatsettings :P
   SetCVar('conversationMode','inline')
   SetCVar('CombatDamage',1)
   SetCVar('CombatHealing',0)
+  SetCVar('CombatHealing',1)
   SetCVar('combatLogOn',0) -- Whether or not the combat log is shown
   SetCVar('CombatLogPeriodicSpells',0) -- Enables periodic spells in combat log (?)
   SetCVar('guildMemberNotify',1)
