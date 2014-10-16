@@ -1,171 +1,264 @@
 local _, Eavu = ...
 
-function Eavu.CreateLayout()  -- Cvars and Chatsettings :P
-  -- UIScale
-  -- SetCVar('useUiScale',1)
-  -- SetCVar('uiScale', math.floor(768/UIParent:GetHeight()))
+local cvars = {
+  -- Mac
+  MacUseCommandAsControl = 1,
 
-  -- Chat CVARS
-  SetCVar('autoCompleteResortNamesOnRecency',1)
-  SetCVar("autoCompleteUseContext", 1)
-  SetCVar('chatBubbles',0)
-  SetCVar('chatBubblesParty',0)
-  SetCVar('chatMouseScroll',1)
-  SetCVar('chatStyle','classic')
-  SetCVar('conversationMode','inline')
-  SetCVar('CombatDamage',1)
-  SetCVar('CombatHealing',0)
-  SetCVar('CombatHealing',1)
-  SetCVar('combatLogOn',0) -- Whether or not the combat log is shown
-  SetCVar('CombatLogPeriodicSpells',0) -- Enables periodic spells in combat log (?)
-  SetCVar('guildMemberNotify',1)
-  SetCVar('profanityFilter',0)
-  SetCVar('showToastBroadcast',1)
-  SetCVar('showToastConversation',1)
-  SetCVar('showToastFriendRequest',1)
-  SetCVar('showToastOffline',1)
-  SetCVar('showToastOnline',1)
-  SetCVar('spamFilter',1)
+  -- Controls
+  deselectOnClick = 1,
+  autoDismountFlying = 0,
+  autoClearAFK = 1,
+  blockTrades = 0,
+  blockChannelInvites = 1,
+  lootUnderMouse = 1,
+  autoLootDefault = 1,
+  --autoLootKey = "SHIFT",
+  autoOpenLootHistory = 0,
+  interactOnLeftClick = 0,
 
-  -- Controls CVARS
-  SetCVar('assistAttack',1)
-  SetCVar('autoClearAFK',1)
-  SetCVar('autoDismount',1)
-  SetCVar('autoDismountFlying',0)
-  SetCVar('AutoInteract',0) -- Enables Right-click to move
-  SetCVar('autoLootDefault',1) -- Enables auto-looting of corpses
-  SetCVar('autoSelfCast',1)
-  SetCVar('autoStand',1)
-  SetCVar('autoUnshift',1)
-  SetCVar('BlockTrades',0) -- Block trade requests
-  SetCVar('deselectOnClick',1) -- Sticky targetting
-  SetCVar('lootUnderMouse',1)
-  SetCVar('maxSpellStartRecoveryoffset',1)
-  SetCVar('secureAbilityToggle',1)
-  SetCVar('stopAutoAttackOnTargetChange',1)
-
-  -- Graphics CVARS
-  SetCVar('emphasizeMySpellEffects',1)
-  SetCVar('environmentDetail',1)
-  SetCVar('farclip',450)
-  SetCVar('ffxDeath',1)
-  SetCVar('ffxGlow',1)
-  SetCVar('ffxNetherWorld',1)
-  SetCVar('ffxSpecial',0)
-  SetCVar('ffx',1)
-  SetCVar('groundEffectDensity',16)
-  SetCVar('groundEffectDist',32)
-  SetCVar('gxApi','d3d11')
-  SetCVar('gxCursor',1)
-  SetCVar('gxFixLag',1)
-  SetCVar('gxMultisample',1)
-  SetCVar('gxMultisampleQuality',2)
-  SetCVar('particleDensity',75)
-  SetCVar('pathSmoothing',1) -- Whether NPCs will round corners on ground paths
-  SetCVar('shadowMode',1)
-  SetCVar('SkyCloudLOD',1)
-  SetCVar('sunshafts',1)
-  SetCVar('waterDetail',1) -- Enables water reflection (0 = old water, 1 = screen space reflection, 2 = dynamic reflection)
+  -- Combat
+  assistAttack = 1,
+  autoSelfCast = 1,
+  stopAutoAttackOnTargetChange = 1,
+  showTargetOfTarget = 1,
+  showTargetCastbar = 1,
+  showVKeyCastbar = 1,
+  showVKeyCastbarOnlyOnTarget = 1,
+  showVKeyCastbarSpellName = 1,
+  displaySpellActivationOverlays = 1,
+  spellActivationOverlayOpacity = 0.75,
+  ActionButtonUseKeyDown = 1,
+  -- LOC_OPTION_FULL = 2 - LOC_OPTION_ALERT = 1 - LOC_OPTION_OFF = 0
+  lossOfControl = 1,
+  lossOfControlFull = 2,
+  lossOfControlSilence = 2,
+  lossOfControlInterrupt = 1,
+  lossOfControlDisarm = 1,
+  lossOfControlRoot = 1,
 
   -- Interface options
-  SetCVar('addFriendInfoShown',1)
-  SetCVar('advancedWatchFrame',1)
-  SetCVar('alwaysCompareItems',0)
-  SetCVar('alwaysShowActionBars',0)
-  SetCVar('buffDurations',1)
-  SetCVar('characterFrameCollapsed',0)
-  SetCVar('colorChatNamesByClass',1)
-  SetCVar('consolidateBuffs',0)
-  SetCVar('colorblindMode', 0)
-  SetCVar('digSites',1)
-  SetCVar('displaySpellActivationOverlays',1)
-  SetCVar('displayWorldPVPObjectives',1)
-  SetCVar('dontShowEquipmentSetsOnItems',1)
-  SetCVar('enableCombatText',1)
-  SetCVar('enablePVPNotifyAFK',1)
-  SetCVar('friendsSmallView',1)
-  SetCVar('friendsViewButtons',1)
-  SetCVar('guildRosterView',1)
-  SetCVar('guildShowOffline',1)
-  SetCVar('lfgAutoFill',0)
-  SetCVar('lfgAutoJoin',0)
-  SetCVar('lockedWorldMap',0)
-  SetCVar('mapQuestDifficulty',1)
-  SetCVar('minimapZoom',0)
-  SetCVar('minimapInsideZoom',0)
-  SetCVar('minimapShapeshiftTracking',1)
-  SetCVar('pendingInviteInfoShown',1)
-  SetCVar('PetMeleeDamage',1)
-  SetCVar('PetSpellDamage',1)
-  SetCVar('predictedHealth',1)
-  SetCVar('predictedPower',1)
-  SetCVar('rotateMinimap',0)
-  SetCVar('screenEdgeFlash',1)
-  SetCVar('screenshotFormat','jpeg')
-  SetCVar('screenshotQuality',10)
-  SetCVar('scriptErrors',1)
-  SetCVar('scriptProfile',0)
-  SetCVar('showGameTips',0)
-  SetCVar('showToastWindow',1)
-  SetCVar('synchronizeBindings',0)
-  SetCVar('synchronizeConfig',0)
-  SetCVar('synchronizeMacros',1)
-  SetCVar('synchronizeSettings',0)
-  SetCVar('taintLog',1)
-  SetCVar('UberTooltips',1)
+  addFriendInfoShown = 1,
+  characterFrameCollapsed = 0,
+  consolidateBuffs = 0,
+  lfgAutoFill = 1,
+  lfgAutoJoin = 0,
 
-  SetCVar('UnitNameEnemyGuardianName',0)
-  SetCVar('UnitNameEnemyPetName',1)
-  SetCVar('UnitNameEnemyPlayerName',1)
-  SetCVar('UnitNameEnemyTotemName',0)
-  SetCVar('UnitNameFriendlyGuardianName',0)
-  SetCVar('UnitNameFriendlyPetName',0)
-  SetCVar('UnitNameFriendlyPlayerName',1)
-  SetCVar('UnitNameFriendlySpecialNPCName',1)
-  SetCVar('UnitNameFriendlyTotemName',0)
-  SetCVar('UnitNameGuildTitle',0)
-  SetCVar('UnitNameNonCombatCreatureName',1)
-  SetCVar('UnitNameNPC',1)
-  SetCVar('UnitNameOwn',1)
-  SetCVar('UnitNamePlayerGuild',0)
-  SetCVar('UnitNamePlayerPVPTitle',0)
+  -- Display
+  rotateMinimap = 1,
+  screenEdgeFlash = 1,
+  displayFreeBagSlots = 1,
+  movieSubtitle = 0,
+  threatShowNumeric = 1,
+  threatPlaySounds = 1,
+  SpellTooltip_DisplayAvgValues = 1,
+  emphasizeMySpellEffects = 1,
+  spellActivationOverlayOpacity = 1,
+  displaySpellActivationOverlays = 1,
+  digSites = 1,
+  predictedHealth = 1,
+  predictedPower = 1,
 
-  -- Nameplates
-  SetCVar('bloatnameplates',1)
-  SetCVar('bloatthreat',1)
-  SetCVar('nameplateShowEnemies',1)
-  SetCVar('nameplateShowEnemyGuardians',1)
-  SetCVar('nameplateShowEnemyPets',1)
-  SetCVar('nameplateShowEnemyTotems',1)
-  SetCVar('nameplateShowFriends',0)
-  SetCVar('nameplateShowFriendlyGuardians',0)
-  SetCVar('nameplateShowFriendlyPets',0)
-  SetCVar('nameplateShowFriendlyTotems',0)
-  SetCVar('ShowVKeyCastbar',1)
-  SetCVar('ShowClassColorInNameplate',1)
+  -- Objectives
+  autoQuestWatch = 1,
+  autoQuestProgress = 1,
+  mapFade = 1,
+  trackQuestSorting = 'proximity',
+
+  -- Social
+  -- Chatstyle - 'im','classic'
+  -- conversationMode - 'popout' 'inline' 'popout_and_inline'
+  -- whisperMode
+  profanityFilter = 0,
+  chatBubbles = 0,
+  chatBubblesParty = 0,
+  spamFilter = 1,
+  removeChatDelay = 1,
+  guildMemberNotify = 1,
+  wholeChatWindowClickable = 1,
+  chatMouseScroll = 1,
+  chatStyle = "im",
+  conversationMode = 'inline',
+  whisperMode = 'inline',
+  bnWhisperMode = 'inline',
+  showTimestamps = 1,
+  colorChatNamesByClass = 1,
+
+  -- ActionBars
+  lockActionBars = 1,
+  alwaysShowActionBars = 0,
+  secureAbilityToggle = 1,
+
+  -- Names
+  UnitNameOwn = 0,
+  UnitNameNPC = 1,
+  UnitNameNonCombatCreatureName = 0,
+  UnitNamePlayerGuild = 1,
+  UnitNameGuildTitle = 0,
+  UnitNamePlayerPVPTitle = 0,
+
+  UnitNameFriendlyPlayerName = 1,
+  UnitNameFriendlyPetName = 0,
+  UnitNameFriendlyGuardianName = 0,
+  UnitNameFriendlyTotemName = 0,
+
+  UnitNameEnemyPlayerName = 1,
+  UnitNameEnemyPetName = 1,
+  UnitNameEnemyGuardianName = 0,
+  UnitNameEnemyTotemName = 0,
+
+  nameplateShowFriends = 1,
+  nameplateShowFriendlyPets = 1,
+  nameplateShowFriendlyGuardians = 0,
+  nameplateShowFriendlyTotems = 0,
+  nameplateShowEnemies = 1,
+  nameplateShowEnemyPets = 1,
+  nameplateShowEnemyGuardians = 0,
+  nameplateShowEnemyTotems = 1,
+  ShowClassColorInNameplate = 1,
+  --nameplateMotion
+
+  -- Combat Text
+  enableCombatText = 1,
+  fctCombatState = 1,
+  fctDodgeParryMiss = 1,
+  fctDamageReduction = 0,
+  fctRepChanges = 0,
+  fctReactives = 1,
+  fctFriendlyHealers = 0,
+  fctComboPoints = 1,
+  fctLowManaHealth = 1,
+  fctEnergyGains = 0,
+  fctPeriodicEnergyGains = 0,
+  fctHonorGains = 0,
+  fctAuras = 1,
+  CombatDamage = 1,
+  CombatLogPeriodicSpells = 0,
+  PetMeleeDamage = 1,
+  CombatHealing = 1,
+  CombatHealingAbsorbTarget = 0,
+  CombatHealingAbsorbSelf = 1,
+  fctSpellMechanics = 1, --SHOW_TARGET_EFFECTS
+  fctSpellMechanicsOther = 0, --SHOW_OTHER_TARGET_EFFECTS
+  combatTextFloatMode = 3, --up = 1' 'down = 2' 'arc = 3'
+
+  -- Status Text
+  xpBarText = 1,
+  playerStatusText = 1,
+  petStatusText = 1,
+  partyStatusText = 1,
+  targetStatusText = 1,
+  alternateResourceText = 1,
+  statusTextDisplay = 'PERCENT', -- NUMERIC PERCENT BOTH
+
+  -- UnitFrame
+  showPartyBackground = 0,
+  showPartyPets = 1,
+  fullSizeFocusFrame = 1,
+
+  -- Camera
+  cameraTerrainTilt = 1,
+  cameraBobbing = 0,
+  cameraWaterCollision = { text = "WATER_COLLISION" },
+  cameraDistanceMaxFactor = 1.2,
+  --cameraSmoothStyle -- CameraPanelFollowTerrain
+
+  -- Buffs
+  buffDurations = 1,
+  showDispelDebuffs = 1,
+  showCastableBuffs = 1,
+  consolidateBuffs = 0,
+  -- showAllEnemyDebuffs = ,
+
+  -- Battle.net
+  showToastOnline = 1,
+  showToastOffline = 0,
+  showToastBroadcast = 0,
+  showToastFriendRequest = 1,
+  showToastConversation = 1,
+  showToastWindow = 1,
+
+  -- Mouse
+  enableMouseSpeed = 1,
+  mouseInvertPitch = 0,
+  enableWoWMouse = 0,
+  autointeract = 0,
+
+  -- Help
+  showTutorials = 0,
+  showGameTips = 0, -- tip of the day
+  UberTooltips = 1,
+  scriptErrors = 1,
+  colorblindMode = 0,
+  enableMovePad = 0,
 
   -- Sound Options
-  SetCVar('ChatSoundVolume',1)
-  SetCVar('EnableMicrophone',0)
-  SetCVar('EnableVoiceChat',0)
-  SetCVar('FootstepSounds',1)
-  SetCVar('Sound_EnableAllSound',1)
-  SetCVar('Sound_EnableArmorFoleySoundForOthers',0)
-  SetCVar('Sound_EnableArmorFoleySoundForSelf',1)
-  SetCVar('Sound_EnableEmoteSounds',1)
-  SetCVar('Sound_EnableErrorSpeech',1)
-  SetCVar('Sound_EnableMusic',1)
-  SetCVar('Sound_EnableSFX',1)
-  SetCVar('Sound_EnableSoundWhenGameIsInBG',1)
-  SetCVar('Sound_ListenerAtCharacter',1)
-  --SetCVar('Sound_OutputQuality',)
-  SetCVar('useEnglishAudio',0)
+  ChatMusicVolume = 0.3,
+  ChatSoundVolume = 0.4,
+  ChatAmbienceVolume = 0.3,
+  Sound_MasterVolume = 0.3,
+  Sound_MusicVolume = 0.1,
+  Sound_AmbienceVolume = 0.1,
+  Sound_SFXVolume = 0.1,
+  Sound_DialogVolume = 0.1,
+  EnableMicrophone = 0,
+  EnableVoiceChat = 0,
+  Sound_EnableSFX = 0,
+  Sound_EnableSoundWhenGameIsInBG = 1,
+  Sound_ListenerAtCharacter = 1,
+  Sound_EnableReverb = 0,
+  Sound_EnableDSPEffects = 0,
 
-  -- Unit Frames
-  SetCVar('raidOptionIsShown',0)
-  SetCVar('useCompactPartyFrames',1)
-  SetCVar('xpBarText',1)
+  -- Misc
+  taintLog = 1,
+  screenshotQuality = 10,
+  screenshotFormat = 'png',
+  synchronizeBindings = 0,
+  synchronizeConfig = 0,
+  synchronizeMacros = 1,
+  synchronizeSettings = 0,
+  checkAddonVersion = 0,
+  scriptErrors = 1,
+  scriptProfile = 0,
 
-  -- My Mac settings
-  SetCVar("MacUseCommandAsControl", 1)
+  -- Normal settings
+  -- graphicsQuality = 3,
+  -- farclip = 700,
+  -- particleDensity = 50,
+  -- waterDetail = 1,
+  -- rippleDetail = 1,
+  -- reflectionMode = 0,
+  -- sunShafts = 0,
+  -- refraction = 1,
+  -- groundEffectDensity = 35,
+  -- groundEffectDist = 90,
+  -- projectedTextures = 0,
+  -- shadowMode = 1,
+  -- shadowTextureSize = 1024,
+  -- SSAOBlur = 0,
+  -- textureFilteringMode = 3,
+
+  -- -- RAID settings
+  -- RAIDgraphicsQuality = 3,
+  -- RAIDsettingsInit = 1,
+  -- RAIDfarclip = 450,
+  -- RAIDWaterDetail = 1,
+  -- RAIDSSAO = 0,
+  -- RAIDSSAOBlur = 0,
+  -- RAIDgroundEffectDensity = 32,
+  -- RAIDgroundEffectDist = 80,
+  -- RAIDshadowMode = 0,
+  -- RAIDwmoLodDist = 300,
+  -- RAIDprojectedTextures = 0,
+  -- RAIDshadowTextureSize = 1024,
+  -- RAIDreflectionMode = 0,
+  -- RAIDsunShafts = 0,
+  -- RAIDparticleDensity = 30,
+  -- RAIDrefraction = 1,
+}
+
+function Eavu.CreateLayout()
+  for key, value in next, cvars do
+    SetCVar(key, value)
+  end
+  print("Eavu : Initialized")
 end

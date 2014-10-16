@@ -1,4 +1,4 @@
-## Interface: 50400
+## Interface: 60000
 ## Author: MoonWitch
 ## Title: Eavu
 ## Version: 2.0
