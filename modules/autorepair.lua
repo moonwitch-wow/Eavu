@@ -19,7 +19,7 @@ function Eavu.MERCHANT_SHOW()
   if not CanMerchantRepair() then
     return
   else
-    if (IsInGuild() and CanGuildBankRepair()) then -- can we repair from this dude?
+    if (IsInGuild() and CanGuildBankRepair() and not IsShiftKeyDown()) then -- can we repair from this dude?
       RepairAllItems(CanGuildBankRepair() and GetGuildBankWithdrawMoney() >= GetRepairAllCost())
       if GetRepairAllCost() > 0 then
         print('Guild repaired for :'..money_to_string(GetRepairAllCost()))
