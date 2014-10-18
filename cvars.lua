@@ -26,7 +26,7 @@ local cvars = {
   showVKeyCastbarOnlyOnTarget = 1,
   showVKeyCastbarSpellName = 1,
   displaySpellActivationOverlays = 1,
-  spellActivationOverlayOpacity = 0.75,
+  spellActivationOverlayOpacity = 0.5,
   ActionButtonUseKeyDown = 1,
   -- LOC_OPTION_FULL = 2 - LOC_OPTION_ALERT = 1 - LOC_OPTION_OFF = 0
   lossOfControl = 1,
