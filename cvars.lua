@@ -106,8 +106,8 @@ local cvars = {
   UnitNameEnemyGuardianName = 0,
   UnitNameEnemyTotemName = 0,
 
-  nameplateShowFriends = 1,
-  nameplateShowFriendlyPets = 1,
+  nameplateShowFriends = 0,
+  nameplateShowFriendlyPets = 0,
   nameplateShowFriendlyGuardians = 0,
   nameplateShowFriendlyTotems = 0,
   nameplateShowEnemies = 1,
