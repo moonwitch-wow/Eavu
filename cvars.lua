@@ -44,7 +44,7 @@ local cvars = {
   lfgAutoJoin = 0,
 
   -- Display
-  rotateMinimap = 1,
+  rotateMinimap = 0,
   screenEdgeFlash = 1,
   displayFreeBagSlots = 1,
   movieSubtitle = 0,
