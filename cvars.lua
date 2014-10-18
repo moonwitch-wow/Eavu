@@ -260,5 +260,5 @@ function Eavu.CreateLayout()
   for key, value in next, cvars do
     SetCVar(key, value)
   end
-  print("Eavu : Initialized")
+  -- print("Eavu : Initialized")
 end
