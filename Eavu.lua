@@ -42,7 +42,7 @@ function CreateEavuPanel(frameName, width, height, anchor1, parent, anchor2, x, 
 end
 
 function EavuPrint(...) -- for debugging if needed
-  print('|cffff8080Eavu.|r', ...)
+  print('|cffff8080Eavu |r', ...)
 end
 
 --------------------------------------------
