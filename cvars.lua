@@ -68,6 +68,10 @@ local cvars = {
   -- Chatstyle - 'im','classic'
   -- conversationMode - 'popout' 'inline' 'popout_and_inline'
   -- whisperMode
+  -- Possible timestamp values :
+  -- none
+  -- %I:%M, %I:%M:%S, %I:%M %p, %I:%M:%S %p : 12h style, 12h + sec, 12h with AM/PM, 12hr + sec + AM/PM
+  -- %H:%M, %H:%M:%S : 24h, 24h + sec
   profanityFilter = 0,
   chatBubbles = 0,
   chatBubblesParty = 0,
@@ -80,7 +84,7 @@ local cvars = {
   conversationMode = 'inline',
   whisperMode = 'inline',
   bnWhisperMode = 'inline',
-  showTimestamps = 1,
+  showTimestamps = "%H:%M",
   colorChatNamesByClass = 1,
 
   -- ActionBars
