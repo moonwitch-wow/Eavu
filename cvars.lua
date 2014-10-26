@@ -84,7 +84,7 @@ local cvars = {
   conversationMode = 'inline',
   whisperMode = 'inline',
   bnWhisperMode = 'inline',
-  showTimestamps = "%H:%M",
+  showTimestamps = nil,
   colorChatNamesByClass = 1,
 
   -- ActionBars
